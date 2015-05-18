@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
   response.writeHead("200",{"Context-Type": "text/html"});
-  fs.createReadStream("./index.html").pipe(response);
+  fs.createReadStream("./homepage/index.html").pipe(response);
 });
 
 app.listen(app.get('port'), function() {
