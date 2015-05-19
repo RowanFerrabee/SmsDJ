@@ -11,27 +11,35 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function(request, response) {
   response.writeHead("200",{"Context-Type": "text/html"});
-  fs.createReadStream("./homepage/index.html").pipe(response);
+  fs.createReadStream("./homepage/homepage.html").pipe(response);
 });
 
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM directory', function(err, result) {
       done();
-      if (err)
-       { console.error(err); response.send("Error " + err); }
-      else
-       { response.send(result.rows); }
+      if (err) { 
+      	console.error(err); response.send("Error " + err);
+      }
+      else {
+      	var table = "<h4>";
+      	for(var i=0; i<result.rowCount; i++)
+      		table += result.rows[i].name + ": " + result.rows[i].number + "</br>";
+      	table+="</h4>";
+       	response.send(table);
+      }
     });
   });
 });
 
 app.post('/addUser', function(request, response) {
-  var name = request.body.name;
-  var number = request.body.number;
+  var name = request.query.name;
+  var number = request.query.number;
 
   console.log("Name: ",name,"  Number: ",number);
-  var query = 'insert into directory (name, number) values ('+name+','+number+')';
+  var query = "insert into directory (name, number) values ('"+name+"','"+number+"')";
+
+  console.log(query);
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
   	client.query(query, function(err, result) {
@@ -41,6 +49,7 @@ app.post('/addUser', function(request, response) {
   			}
   		});
   });
+  response.end();
 });
 
 app.listen(app.get('port'), function() {

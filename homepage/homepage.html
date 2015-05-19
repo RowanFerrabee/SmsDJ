@@ -23,7 +23,7 @@
 				removeValues();
 			}
 
-			xmlhttp.open("POST","/?name="+userName+"&number="+userNumber,true);
+			xmlhttp.open("POST","/addUser?name="+userName+"&number="+userNumber,true);
 			xmlhttp.send();
 		}
 		function removeValues() {
