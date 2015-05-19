@@ -2,10 +2,40 @@
 <html>
 <head>
 	<title>Web App</title>
-	<link href="stylesheet.css" rel="stylesheet"/>
+	<style type="text/css">
+		#header {
+			font-family: Arial;
+			font-size: 40px;
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+		function loadData() {
+			var xmlhttp = new XMLHttpRequest();
+			var userName = 
+				encodeURIComponent(document.getElementById("name").value);
+			var userNumber = 
+				encodeURIComponent(document.getElementById("number").value);
+
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status==200) {
+					document.getElementById("postResult").innerHTML = xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("POST","/addUser?name="+userName+"&number="+userNumber,true);
+			xmlhttp.send();
+		}
+	</script>
 </head>
 
 <body>
-	<h1>Hello World!</h1>
+	<h1 id="header">Hello World!</h1>
+	<form action="/addUser" method="POST">
+		Name: </br><input type="text" name="name"/></br>
+		Cell number: </br><input type="text" name="number"/></br>
+		<button onclick="loadData()">Submit</button>
+	</form>
+	<div id="postResult"></div>
+	</p>
 </body>
 </html>
