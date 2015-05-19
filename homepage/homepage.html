@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Web App</title>
+	<title>Homepage</title>
 	<style type="text/css">
 		#header {
 			font-family: Arial;
-			font-size: 20px;
+			font-size: 30px;
+		} #name {
+			border-radius: 10px;
+		} #number {
+			border-radius: 10px;
+		} #sumbit {
+			border-top: 10px;
+			border-radius: 10px;
 		} body {
 			text-align: center;
+			font-size: 20px;
 		}
 	</style>
 	
@@ -37,6 +45,6 @@
 	<h1 id="header">Please add to our <a href="/db">directory</a>!</h1>
 	Name: </br><input type="text" name="name" id="name"/></br>
 	Cell number: </br><input type="text" name="number" id="number"/></br>
-	<button onclick="loadData()">Submit</button>
+	<button id="submit" onclick="loadData()">Submit</button>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Directory</title>
+	<style type="text/css">
+		body {
+			text-align: center;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				document.getElementById("content").innerHTML = xmlhttp.responseText;
+			}
+			xmlhttp.open('GET','/getData',true);
+			xmlhttp.send();
+		}
+	</script>
+</head>
+
+<body>
+	<h4 id="content">
+
+	</h4>
+</body>
+</html>

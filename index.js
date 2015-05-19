@@ -15,6 +15,11 @@ app.get('/', function(request, response) {
 });
 
 app.get('/db', function (request, response) {
+  response.writeHead("200",{"Context-Type": "text/html"});
+  fs.createReadStream("./directory/directory.html").pipe(response);
+});
+
+app.get('/getData', function(request,response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM directory', function(err, result) {
       done();
@@ -22,10 +27,9 @@ app.get('/db', function (request, response) {
       	console.error(err); response.send("Error " + err);
       }
       else {
-      	var table = "<h4>";
+      	var table = "";
       	for(var i=0; i<result.rowCount; i++)
       		table += result.rows[i].name + ": " + result.rows[i].number + "</br>";
-      	table+="</h4>";
        	response.send(table);
       }
     });
