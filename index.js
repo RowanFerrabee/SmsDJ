@@ -36,6 +36,7 @@ app.post('/addUser', function(request, response) {
   var name = request.query.name;
   var number = request.query.number;
 
+  if (name != "" && number != "") {
   console.log("Name: ",name,"  Number: ",number);
   var query = "insert into directory (name, number) values ('"+name+"','"+number+"')";
 
@@ -49,6 +50,7 @@ app.post('/addUser', function(request, response) {
   			}
   		});
   });
+  }
   response.end();
 });
 
