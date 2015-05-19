@@ -47,7 +47,6 @@ app.post('/hack', function(request, response) {
         }
       });
   });
-  }
   response.end();
 });
 
