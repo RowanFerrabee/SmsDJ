@@ -30,6 +30,8 @@ app.get('/', function(request, response) {
          console.log(responseData.from); // outputs "+14506667788"
           console.log(responseData.body); // outputs "word to your mother."
 
+      } else {
+        console.log(err);
       }
 
   });
