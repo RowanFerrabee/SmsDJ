@@ -59,7 +59,7 @@ app.post('/text', function(request,response) {
   });
 });
 
-app.post("/newAdmin", function (request, response) {
+app.get("/newAdmin", function (request, response) {
   var name = request.query.name.replace(/[()';]/gi, '');
   var number = '+'+request.query.number.replace(/[^0-9]/gi, '');
   if (number.length == 11) {

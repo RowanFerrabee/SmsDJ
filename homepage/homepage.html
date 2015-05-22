@@ -37,7 +37,7 @@
 					document.getElementById("login").innerHTML = xmlhttp.responseText;
 				}
 
-				xmlhttp.open("POST","/newAdmin?name="+encodeURIComponent(userName)+"&number="+encodeURIComponent(userNumber),true);
+				xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(userName)+"&number="+encodeURIComponent(userNumber),true);
 				xmlhttp.send();
 			}
 		}
