@@ -15,7 +15,7 @@ app.get('/', function(request, response) {
   fs.createReadStream("./homepage/homepage.html").pipe(response);
 });
 
-app.post('/text', function(request,response) {
+app.get('/text', function(request,response) {
   //Send a text message
   client.sendMessage({
       to: '+16137154438', // Any number Twilio can deliver to
@@ -34,6 +34,10 @@ app.post('/text', function(request,response) {
       }
 
   });
+});
+
+app.post('/text', function(request,response) {
+  console.log("Tried to reach me, wasn't home.");
 });
 
 //app.post('call', function(request,response) {
