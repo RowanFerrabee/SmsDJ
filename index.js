@@ -38,8 +38,9 @@ app.get('/text', function(request,response) {
 
 app.post('/text', function(request,response) {
   console.log(request);
+  console.log("From: ",request.body.From,"\nWith Body: ",request.body.Body);
   client.sendMessage({
-      to: request.body.from, // Any number Twilio can deliver to
+      to: request.body.From, // Any number Twilio can deliver to
       from: '+16479315875', // A number you bought from Twilio and can use for outbound communication
       body: 'Just got your text!' // body of the SMS message
 
