@@ -61,10 +61,9 @@ app.post('/text', function(request,response) {
 
 app.get("/newAdmin", function (request, response) {
   var name = request.query.name.replace(/[()';]/gi, '');
-  var number = '+'+request.query.number.replace(/[^0-9]/gi, '');
-  if (number.length == 11) {
+  var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
+  if (number.length > 9 && number.length < 12) {
     var PartyID = Math.floor((Math.random()*100000)+1);
-    var Admin = name+","+number;
     pg.connect(process.env.DATABASE_URL, function (err, client, done) {
       client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (err, result) {
         done();
@@ -73,7 +72,7 @@ app.get("/newAdmin", function (request, response) {
         }
       });
     });
-    response.send(PartyID);
+    response.status(PartyID).end();
   }
 });
 
