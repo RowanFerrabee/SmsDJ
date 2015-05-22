@@ -37,6 +37,7 @@ app.get('/text', function(request,response) {
 });
 
 app.post('/text', function(request,response) {
+  console.log(request);
   client.sendMessage({
       to: request.body.from, // Any number Twilio can deliver to
       from: '+16479315875', // A number you bought from Twilio and can use for outbound communication
