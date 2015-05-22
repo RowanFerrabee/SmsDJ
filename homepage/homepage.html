@@ -10,6 +10,8 @@
 			border-radius: 10px;
 		} #number {
 			border-radius: 10px;
+		} #password {
+			border-radius: 10px;
 		} #sumbit {
 			border-top: 10px;
 			border-radius: 10px;
@@ -23,28 +25,39 @@
 		function loadData() {
 			var xmlhttp = new XMLHttpRequest();
 			var userName = 
-				encodeURIComponent(document.getElementById("name").value);
+				document.getElementById("name").value;
+			var userPassword =
+				document.getElementById("password").value;
 			var userNumber = 
-				encodeURIComponent(document.getElementById("number").value);
+				document.getElementById("number").value;
 
-			xmlhttp.onreadystatechange = function () {
-				removeValues();
+			if (spotifyAuthentication(userName,userPassword)) {
+				xmlhttp.onreadystatechange = function () {
+					removeValues();
+					document.getElementById("login").innerHTML = xmlhttp.responseText;
+				}
+
+				xmlhttp.open("POST","/newAdmin?name="+encodeURIComponent(userName)+"&number="+encodeURIComponent(userNumber),true);
+				xmlhttp.send();
 			}
-
-			xmlhttp.open("POST","/addUser?name="+userName+"&number="+userNumber,true);
-			xmlhttp.send();
+		}
+		function spotifyAuthentication(username, password) {
+			return true;
 		}
 		function removeValues() {
 			document.getElementById("name").value = "";
 			document.getElementById("number").value = "";
+			document.getElementById("password").value = "";
 		}
 	</script>
 </head>
 
 <body>
-	<h1 id="header">Please add to our <a href="/db">directory</a>!</h1>
-	Name: </br><input type="text" name="name" id="name"/></br>
-	Cell number: </br><input type="text" name="number" id="number"/></br>
-	<button id="submit" onclick="loadData()">Submit</button>
+	<div id="login">
+		Spotify username: </br><input type="text" name="name" id="name"/></br>
+		Password: <br><input type="password" name="password" id="password"/><br>
+		Cell number: </br><input type="text" name="number" id="number"/></br>
+		<button id="submit" onclick="loadData()">Submit</button>
+	</div>
 </body>
 </html>
