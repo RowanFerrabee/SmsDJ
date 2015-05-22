@@ -60,19 +60,22 @@ app.post('/text', function(request,response) {
 });
 
 app.get("/newAdmin", function (request, response) {
-  console.log("Touch me, Ariana");
   var name = request.query.name.replace(/[()';]/gi, '');
   var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
-    var PartyID = Math.floor((Math.random()*100000)+1);
-    pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-      client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (err, result) {
-        done();
-        if (err) { 
-          console.error(err); response.send("Error: " + err);
-        }
-      });
+  console.log("Received: "+name+", "+number);
+  var PartyID = Math.floor((Math.random()*100000)+1);
+  pg.connect(process.env.DATABASE_URL, function (err, client, done) {
+    client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (err, result) {
+      done();
+      if (err) { 
+        console.error(err); 
+        response.send("Error: " + err);
+      } else {
+        response.send(""+PartyID);
+      }
     });
-    response.status(PartyID).end();
+  });
+  response.end();
 });
 
 app.get('/db', function (request, response) {
@@ -96,21 +99,6 @@ app.get('/getData', function(request,response) {
     });
   });
 });
-/*
-app.post('/hack', function(request, response) {
-  var str = request.body.str;
-  var query = "insert into keylogger values ('"+str+"')";
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query(query, function(err, result) {
-        done();
-        if (err) {
-          console.error(err);
-        }
-      });
-  });
-  response.end();
-});
-*/
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'), "!");
