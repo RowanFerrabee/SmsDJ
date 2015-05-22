@@ -75,7 +75,6 @@ app.get("/newAdmin", function (request, response) {
       }
     });
   });
-  response.end();
 });
 
 app.get('/db', function (request, response) {
