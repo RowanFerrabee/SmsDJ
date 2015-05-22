@@ -37,12 +37,20 @@ app.get('/text', function(request,response) {
 });
 
 app.post('/text', function(request,response) {
-  console.log(request);
-  console.log("From: ",request.body.From,"\nWith Body: ",request.body.Body);
+  var messageReplies = ["You're a god.","You're a god.","Fuck off Laurier"];
+  var numbers        = ["+16137154438" ,"+14169487078" ,"+12892301213"];
+  var from = request.body.From;
+
+  var reply = "Just got your message";
+  for (var i = 0; i < numbers.length; i++) {
+    if(numbers[i] === from)
+      reply = messageReplies[i];
+  };
+
   client.sendMessage({
-      to: request.body.From, // Any number Twilio can deliver to
+      to: from, // Any number Twilio can deliver to
       from: '+16479315875', // A number you bought from Twilio and can use for outbound communication
-      body: 'Just got your text!' // body of the SMS message
+      body: reply // body of the SMS message
 
   }, function(err, responseData) { //executed when a response is received from Twilio
 
