@@ -63,7 +63,6 @@ app.get("/newAdmin", function (request, response) {
   console.log("Touch me, Ariana");
   var name = request.query.name.replace(/[()';]/gi, '');
   var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
-  if (number.length > 9 && number.length < 12) {
     var PartyID = Math.floor((Math.random()*100000)+1);
     pg.connect(process.env.DATABASE_URL, function (err, client, done) {
       client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (err, result) {
@@ -74,7 +73,6 @@ app.get("/newAdmin", function (request, response) {
       });
     });
     response.status(PartyID).end();
-  }
 });
 
 app.get('/db', function (request, response) {
