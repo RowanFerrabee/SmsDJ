@@ -37,7 +37,23 @@ app.get('/text', function(request,response) {
 });
 
 app.post('/text', function(request,response) {
-  console.log("Tried to reach me, wasn't home.");
+  client.sendMessage({
+      to: request.body.from, // Any number Twilio can deliver to
+      from: '+16479315875', // A number you bought from Twilio and can use for outbound communication
+      body: 'Just got your text!' // body of the SMS message
+
+  }, function(err, responseData) { //executed when a response is received from Twilio
+
+      if (!err) {
+        // http://www.twilio.com/docs/api/rest/sending-sms#example-1
+        console.log(responseData.from); // outputs "+14506667788"
+        console.log(responseData.body); // outputs "word to your mother."
+
+      } else {
+        console.log(err);
+      }
+
+  });
 });
 
 //app.post('call', function(request,response) {
