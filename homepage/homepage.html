@@ -33,8 +33,11 @@
 
 			if (spotifyAuthentication(userName,userPassword)) {
 				xmlhttp.onreadystatechange = function () {
-					removeValues();
-					document.getElementById("login").innerHTML = xmlhttp.responseText;
+					document.getElementById("name").value = "";
+					document.getElementById("number").value = "";
+					document.getElementById("password").value = "";
+					document.getElementById("PartyID").innerHTML = 
+						"<h1>Your PartyID is:<br>"+xmlhttp.responseText+"</h1>";
 				}
 
 				xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(userName)+"&number="+encodeURIComponent(userNumber),true);
@@ -45,9 +48,6 @@
 			return true;
 		}
 		function removeValues() {
-			document.getElementById("name").value = "";
-			document.getElementById("number").value = "";
-			document.getElementById("password").value = "";
 		}
 	</script>
 </head>
@@ -58,6 +58,8 @@
 		Password: <br><input type="password" name="password" id="password"/><br>
 		Cell number: </br><input type="text" name="number" id="number"/></br>
 		<button id="submit" onclick="loadData()">Submit</button>
+	</div>
+	<div id="PartyID">
 	</div>
 </body>
 </html>
