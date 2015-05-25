@@ -38,14 +38,14 @@ app.post('/text', function (request,response) {
             }
             else {
                 if(result)
-                    PartyID+=result.rows[0];
+                    PartyID+=result.rows[0]; //TODO: PartyID not declared in this function - HELP
             }
         });
     });
 
     console.log(PartyID);
 
-    if (PartyID) {
+    if (PartyID) {  //Always NULL
         if (sentNumber) {
             removeFromParty(from,PartyID);
             addToParty(from,body);
@@ -72,7 +72,7 @@ app.post('/text', function (request,response) {
 
 function addToParty(user, PartyID) {
         pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID, function (dbErr, result) {
+        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID, function (dbErr, result) { //TODO: This returns no error even when it doesn't work
             done();
             if (dbErr) {
                 console.error(dbErr);
@@ -144,7 +144,7 @@ app.get("/newAdmin", function (request, response) {
                         console.log(twilioErr);
                     }
                 });
-                response.send(''+PartyID);
+                response.send(''+PartyID);  //Why does this work??
             }
         });
     });
