@@ -27,8 +27,7 @@ app.post('/text', function (request,response) {
     var PartyID;
 
     var sentNumber = false;
-    console.log(re.exec(body));
-    if (re.exec(body).index == 0) {
+    if (re.exec(body).length>0) {
         sentNumber = (body === re.exec(body)[0]);
     } else {
         console.log("re.exec(body) is null");
