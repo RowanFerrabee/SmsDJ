@@ -23,8 +23,7 @@
 	
 	<script type="text/javascript">
 		window.beforeunload = function () {
-			if (window.sessionStorage.getItem("username"))
-				logout();
+			logout();
 		}
 		function loadData() {
 			var xmlhttp = new XMLHttpRequest();

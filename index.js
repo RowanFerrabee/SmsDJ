@@ -24,7 +24,6 @@ app.post('/text', function (request,response) {
     var re = /[0-9]+/g;
     var from = request.body.From;
     var body = request.body.Body;
-    var PartyID = 0;
     var regexArray = re.exec(body);
 
     var sentNumber = false;
@@ -37,46 +36,43 @@ app.post('/text', function (request,response) {
                 console.error(dbErr);
             }
             else {
+                var PartyID = 0;
                 if(result) {
-                    PartyID+=result.rows[0]; //TODO: PartyID not declared in this function - HELP
-                } console.log(PartyID);
-                console.result(result.rows[0]);
+                    PartyID+=result.rows[0];
+                }
+                if (PartyID !== 0) {
+                    if (sentNumber) {
+                        removeFromParty(from,PartyID);
+                        addToParty(from,body);
+                   } else {
+                        //TODO: Add a song and reply on success
+                        console.log('Add song: ' + body);
+                    }
+                } else {
+                    if (sentNumber) {
+                       addToParty(from,body);
+                    } else {
+                        twilio.sendMessage({
+                            to: from,
+                            from: twilioNumber,
+                            body: 'Please connect to a party by replying with a valid PartyID'
+                       }, function (twilioErr, responseData) {
+                           if (twilioErr) {
+                               console.log(twilioErr);
+                           }
+                        });
+                    }
+                }
             }
         });
     });
-
-    console.log(PartyID);
-
-    if (PartyID !== 0) {  //Always NULL
-        if (sentNumber) {
-            removeFromParty(from,PartyID);
-            addToParty(from,body);
-        } else {
-            //TODO: Add a song and reply on success
-            console.log('Add song: ' + body);
-        }
-    } else {
-        if (sentNumber) {
-            addToParty(from,body);
-        } else {
-            twilio.sendMessage({
-                to: from,
-                from: twilioNumber,
-                body: 'Please connect to a party by replying with a valid PartyID'
-            }, function (twilioErr, responseData) {
-                if (twilioErr) {
-                    console.log(twilioErr);
-                }
-            });
-        }
-    }
 });
 
 function addToParty(user, PartyID) {
         pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID, function (dbErr, result) { //TODO: This returns no error even when it doesn't work
             done();
-            if (dbErr) {
+            if (dbErr || !result) {
                 console.error(dbErr);
                 twilio.sendMessage({
                     to: user,
@@ -146,7 +142,7 @@ app.get("/newAdmin", function (request, response) {
                         console.log(twilioErr);
                     }
                 });
-                response.send(''+PartyID);  //Why does this work??
+                response.send(''+PartyID);  //TODO: Why does this work??
             }
         });
     });
