@@ -26,6 +26,9 @@ app.post('/text', function (request,response) {
     var body = request.body.Body;
     var PartyID;
 
+    console.log(body);
+    console.log(re.exec(body));
+
     var sentNumber = (body == re.exec(body));
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
