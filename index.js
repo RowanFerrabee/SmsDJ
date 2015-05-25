@@ -24,7 +24,7 @@ app.post('/text', function (request,response) {
     var re = /[0-9]+/g;
     var from = request.body.From;
     var body = request.body.Body;
-    var PartyID;
+    var PartyID = 0;
     var regexArray = re.exec(body);
 
     var sentNumber = false;
@@ -47,7 +47,7 @@ app.post('/text', function (request,response) {
 
     console.log(PartyID);
 
-    if (PartyID) {  //Always NULL
+    if (PartyID !== 0) {  //Always NULL
         if (sentNumber) {
             removeFromParty(from,PartyID);
             addToParty(from,body);
