@@ -41,6 +41,8 @@ app.post('/text', function (request,response) {
         });
     });
 
+    console.log(PartyID);
+
     if (PartyID) {
         if (sentNumber) {
             removeFromParty(from,PartyID);
