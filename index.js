@@ -37,8 +37,9 @@ app.post('/text', function (request,response) {
                 console.error(dbErr);
             }
             else {
-                if(result)
+                if(result) {
                     PartyID+=result.rows[0]; //TODO: PartyID not declared in this function - HELP
+                } console.log(PartyID);
             }
         });
     });
