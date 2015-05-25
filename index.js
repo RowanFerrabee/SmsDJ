@@ -21,17 +21,14 @@ app.get('/', function (request, response) {
 });
 
 app.post('/text', function (request,response) {
-    var re = /0-9+/
-    console.log(request.body);
-
+    var re = /[0-9]+/g;
     var from = request.body.From;
     var body = request.body.Body;
     var PartyID;
 
-    console.log(body);
-    console.log(re.exec(body));
-
-    var sentNumber = (body == re.exec(body));
+    var sentNumber = false;
+    if (re.exec(body))
+        sentNumber = (body === re.exec(body)[0]);
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
