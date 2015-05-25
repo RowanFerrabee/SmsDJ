@@ -21,7 +21,9 @@ app.get('/', function (request, response) {
 });
 
 app.post('/text', function (request,response) {
-    var re = /0-9+/g
+    var re = /0-9+/
+    console.log(request.body);
+
     var from = request.body.From;
     var body = request.body.Body;
     var PartyID;
