@@ -1,6 +1,7 @@
 
-var lauriersNumber = "+12892301213";
-var laurierResponse = "Fuck off Laurier";
+var lauriersNumber = '+12892301213';
+var laurierResponse = 'Fuck off Laurier';
+var twilioNumber = '+16479315875';
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -14,91 +15,168 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function(request, response) {
-  response.writeHead("200",{"Context-Type": "text/html"});
-  fs.createReadStream("./homepage/homepage.html").pipe(response);
+app.get('/', function (request, response) {
+    response.writeHead('200',{'Context-Type': 'text/html'});
+    fs.createReadStream('./homepage/homepage.html').pipe(response);
 });
 
-app.post('/text', function(request,response) {
-  var from = request.body.From;
-  var PartyID = request.body.Body;
-  //var newUserGrp = from+",";
-/*
-  pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-    client.query("SELECT usergrp FROM Parties WHERE partyid = "+body, function(err, result) {
-      done();
-      if(err) {
-        console.error(err); response.send("Error: " + err);
-      }
-      else {
-        newUserGrp+=result.rows[0].usergrp;
-      }
-    });
-  });*/
-  pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-    client.query("UPDATE Parties SET usergrp = '"+from+","+"' || usergrp WHERE partyid = "+PartyID, function (err, result) {
-      done();
-      if (err) { 
-        console.error(err); response.send("Error: " + err);
-      } else {
-        twilio.sendMessage({
-          to: from, // Any number Twilio can deliver to
-          from: '+16479315875', // A number you bought from Twilio and can use for outbound communication
-          body: 'Successfully added to party with ID: '+PartyID // body of the SMS message
-        }, function(err, responseData) { //executed when a response is received from twilio
-          if (!err) {
-            // http://www.twilio.com/docs/api/rest/sending-sms#example-1
-            console.log(responseData.from); // outputs "+14506667788"
-            console.log(responseData.body); // outputs "word to your mother."
-          } else {
-            console.log(err);
-          }
+app.post('/text', function (request,response) {
+    var re = /0-9+/g
+    var from = request.body.From;
+    var body = request.body.Body;
+    var PartyID;
+    var sentNumber = (body === re.exec(body)[0]);
+
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
+            done();
+            if(dbErr) {
+                console.error(dbErr);
+            }
+            else {
+                PartyID+=result.rows[0];
+            }
         });
-      }
     });
-  });
+
+    if (PartyID) {
+        if (sentNumber) {
+            removeFromParty(from,PartyID);
+            addToParty(from,body);
+        } else {
+            //TODO: Add a song and reply on success
+            console.log('Add song: ' + body);
+        }
+    } else {
+        if (sentNumber) {
+            addToParty(from,body);
+        } else {
+            twilio.sendMessage({
+                to: from,
+                from: twilioNumber,
+                body: 'Please connect to a party by replying with a valid PartyID'
+            }, function (twilioErr, responseData) {
+                if (twilioErr) {
+                    console.log(twilioErr);
+                }
+            });
+        }
+    }
 });
+
+function addToParty(user, PartyID) {
+        pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID, function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+                twilio.sendMessage({
+                    to: user,
+                    from: twilioNumber,
+                    body: 'Failed to add you to party with ID: '+PartyID
+                }, function(twilioErr, responseData) {
+                    if (twilioErr) {
+                        console.log(twilioErr);
+                    }
+                });
+                console.log('Failed to add ',user,' to ',PartyID);
+            } else {
+                twilio.sendMessage({
+                    to: user,
+                    from: twilioNumber,
+                    body: 'Successfully added to party with ID: '+PartyID
+                }, function (twilioErr, responseData) {
+                    if (twilioErr) {
+                        console.log(twilioErr);
+                    }
+                });
+                console.log('Added ',user,' to ',PartyID);
+            }
+        });
+    });
+}
+
+function removeFromParty(user,PartyID) {
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("UPDATE Parties SET usergrp = replace(usergrp,'"+user+",','') WHERE partyid = "+PartyID, function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+            } else {
+                twilio.sendMessage({
+                    to: user,
+                    from: twilioNumber,
+                    body: 'Successfully removed from party with ID: '+PartyID
+                }, function (twilioErr, responseData) {
+                    if (twilioErr) {
+                        console.log(twilioErr);
+                    }
+                });
+            }
+        });
+    });
+}
 
 app.get("/newAdmin", function (request, response) {
-  var name = request.query.name.replace(/[()';]/gi, '');
-  var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
-  console.log("Received: "+name+", "+number);
-  var PartyID = Math.floor((Math.random()*100000)+1);
-  pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-    client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (err, result) {
-      done();
-      if (err) { 
-        console.error(err); 
-        response.send("Error: " + err);
-      } else {
-        response.send(""+PartyID);
-      }
+    var name = request.query.name.replace(/[()';]/gi, '');
+    var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
+    console.log("Received: "+name+", "+number);
+    var PartyID = Math.floor((Math.random()*100000)+1); //TODO: Generate PartyIDs better.
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+                response.send('Error: ' + dbErr);
+            } else {
+                twilio.sendMessage({
+                    to: number,
+                    from: twilioNumber,
+                    body: 'You are now the admin of party with ID: '+PartyID
+                }, function (twilioErr, responseData) {
+                    if (twilioErr) {
+                        console.log(twilioErr);
+                    }
+                });
+                response.send(''+PartyID);
+            }
+        });
     });
-  });
+});
+
+app.post("/deleteParty", function (request, response) {
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("DELETE FROM Parties WHERE spotifyname = '"+request.body.name+"';",function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+            }
+        });
+    });
 });
 
 app.get('/db', function (request, response) {
-  response.writeHead("200",{"Context-Type": "text/html"});
-  fs.createReadStream("./directory/directory.html").pipe(response);
+    response.writeHead('200',{'Context-Type': 'text/html'});
+    fs.createReadStream('./directory/directory.html').pipe(response);
 });
 
-app.get('/getData', function(request,response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("SELECT * FROM Parties", function(err, result) {
-      done();
-      if (err) { 
-      	console.error(err); response.send("Error " + err);
-      }
-      else {
-      	var table = "";
-      	for(var i=0; i<result.rowCount; i++)
-      		table += result.rows[i].spotifyname + ", " + result.rows[i].adminnumber+ ", " + result.rows[i].partyid+ ", " + result.rows[i].usergrp + "</br>";
-       	response.send(table);
-      }
+app.get('/getData', function (request,response) {
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("SELECT * FROM Parties", function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+                response.send('Error: ' + dbErr);
+            } else {
+                var table = '';
+                for(var i=0; i<result.rowCount; i++)
+                    table += result.rows[i].spotifyname + ', ' + result.rows[i].adminnumber+ ', ' + result.rows[i].partyid+ ', ' + result.rows[i].usergrp + '</br>';
+                response.send(table);
+            }
+        });
     });
-  });
 });
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'), "!");
+    console.log('Node app is running on port', app.get('port'), '!');
 });
