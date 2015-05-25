@@ -28,9 +28,9 @@ app.post('/text', function (request,response) {
 
     var sentNumber = false;
     if (re.exec(body).length>0) {
-        sentNumber = (body === re.exec(body)[0]);
+        sentNumber = (body == re.exec(body));
     } else {
-        console.log("re.exec(body) is null");
+        console.log("FAIL");
     }
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
