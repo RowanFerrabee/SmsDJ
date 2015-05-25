@@ -28,7 +28,7 @@ app.post('/text', function (request,response) {
     var regexArray = re.exec(body);
 
     var sentNumber = false;
-    if (regexArray.length>0) sentNumber = (body === regexArray[0]);
+    if (regexArray) sentNumber = (body === regexArray[0]);
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
