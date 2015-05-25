@@ -27,8 +27,12 @@ app.post('/text', function (request,response) {
     var PartyID;
 
     var sentNumber = false;
-    if (re.exec(body))
+    console.log(re.exec(body));
+    if (re.exec(body) !== null) {
         sentNumber = (body === re.exec(body)[0]);
+    } else {
+        console.log("re.exec(body) is null");
+    }
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
