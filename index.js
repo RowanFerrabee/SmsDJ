@@ -25,7 +25,8 @@ app.post('/text', function (request,response) {
     var from = request.body.From;
     var body = request.body.Body;
     var PartyID;
-    var sentNumber = (body === re.exec(body)[0]);
+
+    var sentNumber = (body === re.exec(body));
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
@@ -34,7 +35,8 @@ app.post('/text', function (request,response) {
                 console.error(dbErr);
             }
             else {
-                PartyID+=result.rows[0];
+                if(result)
+                    PartyID+=result.rows[0];
             }
         });
     });
@@ -168,10 +170,12 @@ app.get('/getData', function (request,response) {
                 console.error(dbErr);
                 response.send('Error: ' + dbErr);
             } else {
-                var table = '';
-                for(var i=0; i<result.rowCount; i++)
-                    table += result.rows[i].spotifyname + ', ' + result.rows[i].adminnumber+ ', ' + result.rows[i].partyid+ ', ' + result.rows[i].usergrp + '</br>';
-                response.send(table);
+                if (result) {
+                    var table = '';
+                    for(var i=0; i<result.rowCount; i++)
+                        table += result.rows[i].spotifyname + ', ' + result.rows[i].adminnumber+ ', ' + result.rows[i].partyid+ ', ' + result.rows[i].usergrp + '</br>';
+                    response.send(table);
+                }
             }
         });
     });
