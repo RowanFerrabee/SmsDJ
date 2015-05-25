@@ -40,6 +40,7 @@ app.post('/text', function (request,response) {
                 if(result) {
                     PartyID+=result.rows[0]; //TODO: PartyID not declared in this function - HELP
                 } console.log(PartyID);
+                console.result(result.rows[0]);
             }
         });
     });
