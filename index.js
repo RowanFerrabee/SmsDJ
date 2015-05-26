@@ -104,7 +104,8 @@ function addToParty(user, PartyID) {
 
 function removeFromParty(user,PartyID) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = replace(usergrp,'"+user+",','') WHERE partyid = "+PartyID, function (dbErr, result) {
+        console.log(user,",",PartyID);
+        client.query("UPDATE Parties SET usergrp = REPLACE(usergrp,'"+user+"','') WHERE partyid = "+PartyID, function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);
