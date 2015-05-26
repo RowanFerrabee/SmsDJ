@@ -69,8 +69,8 @@ app.post('/text', function (request,response) {
 });
 
 function addToParty(user, PartyID) {
-        pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID, function (dbErr, result) { //TODO: This returns no error even when it doesn't work
+    pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
+        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID+" RETURNING partyid", function (dbErr, result) { //TODO: This returns no error even when it doesn't work
             done();
             if (dbErr || !result) {
                 console.error(dbErr);
