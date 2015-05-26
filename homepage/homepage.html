@@ -22,9 +22,7 @@
 	</style>
 	
 	<script type="text/javascript">
-		window.beforeunload = function () {	//not working
-			logout();
-		}
+		window.onbeforeunload = logout;
 		function loadData() {
 			var xmlhttp = new XMLHttpRequest();
 			var userName = 
@@ -34,8 +32,7 @@
 			var userNumber = 
 				document.getElementById("number").value;
 			window.sessionStorage.setItem("username", userName);
-			//setCookie("name",document.getElementById("name").value,1);
-
+			window.sessionStorage.setItem("number", userNumber);			
 
 			if (spotifyAuthentication(userName,userPassword)) {
 				xmlhttp.onreadystatechange = function () {
@@ -43,7 +40,7 @@
 					document.getElementById("name").value = "";
 					document.getElementById("number").value = "";
 					document.getElementById("password").value = "";
-					document.getElementById("login").style.visibility = "hidden";
+					document.getElementById("login").style.display = "none";
 					document.getElementById("PartyID").innerHTML = 
 						"<h1>Your PartyID is:<br>"+PartyID+"</h1>";
 					var button = document.createElement("button");
@@ -58,13 +55,14 @@
 			}
 		}
 		function logout() {
-			var params = "name="+window.sessionStorage.getItem("username");
+			var params = "name="+window.sessionStorage.getItem("username")+
+							"&number"+window.sessionStorage.getItem("number");
 			var xmlhttp = new XMLHttpRequest();
 
 			document.getElementById("PartyID").innerHTML = "";
 			document.getElementById("logout").innerHTML = "";
 
-			document.getElementById("login").style.visibility = "visible";
+			document.getElementById("login").style.display = "initial";
 
 			xmlhttp.open("POST","/deleteParty");
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

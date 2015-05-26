@@ -56,10 +56,10 @@ app.post('/text', function (request,response) {
                             to: from,
                             from: twilioNumber,
                             body: 'Please connect to a party by replying with a valid PartyID'
-                       }, function (twilioErr, responseData) {
-                           if (twilioErr) {
+                        }, function (twilioErr, responseData) {
+                            if (twilioErr) {
                                console.log(twilioErr);
-                           }
+                            }
                         });
                     }
                 }
@@ -70,7 +70,7 @@ app.post('/text', function (request,response) {
 
 function addToParty(user, PartyID) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID+" RETURNING partyid", function (dbErr, result) { //TODO: This returns no error even when it doesn't work
+        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID+" RETURNING partyid", function (dbErr, result) {
             done();
             console.log(result);
             if (dbErr) {
@@ -104,8 +104,7 @@ function addToParty(user, PartyID) {
 
 function removeFromParty(user,PartyID) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        console.log(user,",",PartyID);
-        client.query("UPDATE Parties SET usergrp = REPLACE(usergrp,'"+user+"','') WHERE partyid = "+PartyID, function (dbErr, result) {
+        client.query("UPDATE Parties SET usergrp = REPLACE(usergrp,'"+user+",','') WHERE partyid = "+PartyID, function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);
@@ -157,6 +156,16 @@ app.post("/deleteParty", function (request, response) {
             done();
             if (dbErr) {
                 console.error(dbErr);
+            } else {
+                twilio.sendMessage({
+                    to: request.body.number,
+                    from: twilioNumber,
+                    body: 'Your party is now closed'
+                }, function (twilioErr, responseData) {
+                    if (twilioErr) {
+                        console.log(twilioErr);
+                    }
+                });
             }
         });
     });
