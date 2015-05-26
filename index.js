@@ -86,7 +86,7 @@ function addToParty(user, PartyID) {
                     }
                 });
                 console.log('Failed to add ',user,' to ',PartyID);
-            } else {df
+            } else {
                 twilio.sendMessage({
                     to: user,
                     from: twilioNumber,
