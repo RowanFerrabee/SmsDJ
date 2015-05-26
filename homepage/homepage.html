@@ -40,9 +40,10 @@
 			if (spotifyAuthentication(userName,userPassword)) {
 				xmlhttp.onreadystatechange = function () {
 					var PartyID = xmlhttp.responseText;
-					document.getElementById("name").value = "";document.getElementById("name").style.visibility = "hidden";
-					document.getElementById("number").value = "";document.getElementById("name").style.visibility = "hidden";
-					document.getElementById("password").value = "";document.getElementById("name").style.visibility = "hidden";
+					document.getElementById("name").value = "";
+					document.getElementById("number").value = "";
+					document.getElementById("password").value = "";
+					document.getElementById("login").style.visibility = "hidden";
 					document.getElementById("PartyID").innerHTML = 
 						"<h1>Your PartyID is:<br>"+PartyID+"</h1>";
 					var button = document.createElement("button");
@@ -62,6 +63,8 @@
 
 			document.getElementById("PartyID").innerHTML = "";
 			document.getElementById("logout").innerHTML = "";
+
+			document.getElementById("login").style.visibility = "visible";
 
 			xmlhttp.open("POST","/deleteParty");
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
