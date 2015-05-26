@@ -37,8 +37,8 @@ app.post('/text', function (request,response) {
             }
             else {
                 var PartyID = 0;
-                if(result) {
-                    PartyID+=result.rows[0];
+                if(result.rowCount !== 0) {
+                    PartyID=result.rows[0];
                 }
                 if (PartyID !== 0) {
                     if (sentNumber) {
