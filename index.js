@@ -75,7 +75,7 @@ function addToParty(user, PartyID) {
             console.log(result);
             if (dbErr) {
                 console.error(dbErr);
-            } else if (!result) {    
+            } else if (result.rowCount === 0) {    
                 twilio.sendMessage({
                     to: user,
                     from: twilioNumber,
@@ -132,7 +132,7 @@ app.get("/newAdmin", function (request, response) {
         client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (dbErr, result) {
             done();
             if (dbErr) {
-                console.error(dbErr);
+                console.error(dbErr);                
                 response.send('Error: ' + dbErr);
             } else {
                 twilio.sendMessage({
