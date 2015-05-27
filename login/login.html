@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <title>Example of the Authorization Code flow with Spotify</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <title>SMS DJ</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <style type="text/css">
       #login, #loggedin {
         display: none;
@@ -13,19 +13,67 @@
         white-space: nowrap;
         width: 500px;
       }
+      .jumbotron {
+        background-image:url('http://imgur.com/30UUWA3.jpg');
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }.jumbotron .container {
+        position: relative;
+        top:9%;
+      }.jumbotron h1 {
+        color: #fff;
+        font-size: 48px;
+        font-family: 'Shift', sans-serif;
+        font-weight: bold;
+      }.jumbotron p {
+        font-size: 20px;
+        color: #fff;
+      } .nav {
+        background-color: #5a5a5a;
+        position: absolute;
+      } .nav ul {
+      }.nav a {
+        color: #FDFDFD;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 14px 10px;
+        text-transform: uppercase;
+      } .nav li {
+        display: inline;
+      }
     </style>
   </head>
 
   <body>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+        <div class="nav">
+          <div class="container">
+            <ul class="pull-left">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+            </ul>
+            <ul class="pull-right">
+              <li><a href="/login">Log in with Spotify</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="jumbotron">
+          <div class="container">
+            <h1>Welcome to SMS DJ</h1>
+            <p>This is where a description would go.</p>
+          </div>
+        </div>
       </div>
       <div id="loggedin">
         <div id="user-profile">
         </div>
         <div id="oauth">
+        </div>
+        <div id="party">
         </div>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
@@ -128,4 +176,5 @@
         }
       })();
     </script>
+  </body>
 </html>
