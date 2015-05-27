@@ -4,6 +4,9 @@
     <title>SMS DJ</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <style type="text/css">
+      body {
+        background-color: #C4AF86;
+      }
       #login, #loggedin {
         display: none;
       }
@@ -14,14 +17,18 @@
         width: 500px;
       }
       .jumbotron {
+        left:0px;
+        width:100%;
         background-image:url('http://imgur.com/30UUWA3.jpg');
         height: 600px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        position: absolute;
       }.jumbotron .container {
-        position: relative;
-        top:7%;
+        position: absolute;
+        top:11%;
+        left:2%;
       }.jumbotron h1 {
         color: #fff;
         font-size: 48px;
@@ -31,12 +38,17 @@
         font-size: 20px;
         color: #fff;
       } .nav {
-        background-color: #5a5a5a;
+        z-index: 1;
+        background-color: #4B304A;
         position: absolute;
         padding-top: 1%;
-        padding-bottom: 1%
-      } .nav ul {
-      }.nav a {
+        padding-bottom: 1%;
+        padding-left:0%;
+        left:0px;
+        width: 100%;
+      } .nav .pull-left {
+        padding-left: 0px;
+      } .nav a {
         color: #FDFDFD;
         font-size: 11px;
         font-weight: bold;
