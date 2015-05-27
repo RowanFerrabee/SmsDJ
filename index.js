@@ -14,6 +14,7 @@ var fs = require('fs');
 var pg = require('pg');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var spotifyRequest = require('request');
 var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', '41cac7e76eccfd261ed92263625f59e1');
 
 var app = express();
@@ -258,7 +259,7 @@ app.get('/callback', function(req, res) {
       json: true
     };
 
-    request.post(authOptions, function(error, response, body) {
+    spotifyRequest.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
@@ -271,7 +272,7 @@ app.get('/callback', function(req, res) {
         };
 
         // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
+        spotifyRequest.get(options, function(error, response, body) {
           console.log(body);
         });
 
@@ -305,7 +306,7 @@ app.get('/refresh_token', function(req, res) {
     json: true
   };
 
-  request.post(authOptions, function(error, response, body) {
+  spotifyRequest.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
       res.send({
