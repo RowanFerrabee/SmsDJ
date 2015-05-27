@@ -5,14 +5,28 @@ var twilioNumber = '+16479315875';
 
 var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
 var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
+var redirect_uri = '/callback'; 
+var stateKey = 'spotify_auth_state';
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var pg = require('pg');
+var querystring = require('querystring');
+var cookieParser = require('cookie-parser');
 var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', '41cac7e76eccfd261ed92263625f59e1');
 
 var app = express();
+
+var generateRandomString = function(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
