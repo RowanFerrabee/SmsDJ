@@ -29,7 +29,7 @@ var generateRandomString = function(length) {
 };
 
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public')).use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (request, response) {
