@@ -3,11 +3,9 @@ var lauriersNumber = '+12892301213';
 var laurierResponse = 'Fuck off Laurier';
 var twilioNumber = '+16479315875';
 
-var scopes = 'user-read-private user-read-email';
-
 var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
 var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
-var redirect_uri = '/callback'; 
+var redirect_uri = 'http://cryptic-cove-1713.herokuapp.com/callback'; 
 var stateKey = 'spotify_auth_state';
 
 var express = require('express');
