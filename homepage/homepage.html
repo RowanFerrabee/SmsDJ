@@ -56,7 +56,7 @@
 		}
 		function logout() {
 			var params = "name="+window.sessionStorage.getItem("username")+
-							"&number"+window.sessionStorage.getItem("number");
+							"&number=+1"+window.sessionStorage.getItem("number");
 			var xmlhttp = new XMLHttpRequest();
 
 			document.getElementById("PartyID").innerHTML = "";
