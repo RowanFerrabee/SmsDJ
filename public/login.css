@@ -1,0 +1,57 @@
+body {
+        background-color: #C4AF86;
+      } .page {
+        background-color: #4B304A;
+      } #login, #loggedin {
+        display: none;
+      } .text-overflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 500px;
+      } .jumbotron {
+        left:0px;
+        width:100%;
+        background-image:url('http://imgur.com/30UUWA3.jpg');
+        height: 600px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }.jumbotron .container {
+        top:11%;
+        left:2%;
+      }.jumbotron h1 {
+        color: #fff;
+        font-size: 48px;
+        font-family: 'Shift', sans-serif;
+        font-weight: bold;
+      }.jumbotron p {
+        font-size: 20px;
+        color: #fff;
+      } .nav {
+        z-index: 1;
+        background-color: #4B304A;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        padding-left:0%;
+        left:0px;
+        width: 100%;
+        vertical-align: center;
+      } .nav .pull-left {
+        padding-left: 0px;
+      } .nav a {
+        color: #FDFDFD;
+        font-weight: bold;
+      } .nav li {
+        color: #FDFDFD;
+        font-size: 11px;
+        padding: 14px 10px;
+        text-transform: uppercase;
+        display: inline;
+        vertical-align: center;
+      } .bs-docs-featurette {
+        color: #FDFDFD;
+        text-align: center;
+      }

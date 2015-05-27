@@ -3,65 +3,11 @@
   <head>
     <title>SMS DJ</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
-    <style type="text/css">
-      body {
-        background-color: #C4AF86;
-      }
-      #login, #loggedin {
-        display: none;
-      }
-      .text-overflow {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 500px;
-      }
-      .jumbotron {
-        left:0px;
-        width:100%;
-        background-image:url('http://imgur.com/30UUWA3.jpg');
-        height: 600px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        position: absolute;
-      }.jumbotron .container {
-        position: absolute;
-        top:11%;
-        left:2%;
-      }.jumbotron h1 {
-        color: #fff;
-        font-size: 48px;
-        font-family: 'Shift', sans-serif;
-        font-weight: bold;
-      }.jumbotron p {
-        font-size: 20px;
-        color: #fff;
-      } .nav {
-        z-index: 1;
-        background-color: #4B304A;
-        position: absolute;
-        padding-top: 1%;
-        padding-bottom: 1%;
-        padding-left:0%;
-        left:0px;
-        width: 100%;
-      } .nav .pull-left {
-        padding-left: 0px;
-      } .nav a {
-        color: #FDFDFD;
-        font-size: 11px;
-        font-weight: bold;
-        padding: 14px 10px;
-        text-transform: uppercase;
-      } .nav li {
-        display: inline;
-      }
-    </style>
+    <link rel="stylesheet" href="login.css">
   </head>
 
   <body>
-    <div class="container">
+    <div class="page">
       <div id="login">
         <div class="nav">
           <div class="container">
@@ -74,15 +20,62 @@
             </ul>
           </div>
         </div>
-
         <div class="jumbotron">
           <div class="container">
             <h1>Welcome to SMS DJ</h1>
             <p>This is where a description would go.</p>
           </div>
         </div>
+        <div class="bs-docs-featurette">
+          <div class="container">
+            <h2 class="bs-docs-featurette-title">DJ-ing the party, together.</h2>
+            <p class="lead">SMS DJ allows your party's attendees to text song requests to a playist running on your computer, all controlled by you.</p>
+            <hr class="half-rule">
+           <div class="row">
+              <div class="col-sm-4">
+                <img src="1432783005_7.png" width="80" height="80"/>
+                <h3>Join The Party</h3>
+                <p>In et velit quis metus gravida vestibulum. In pellentesque ipsum ut nulla dignissim, ut iaculis sem scelerisque. Maecenas vel augue nisi. Ut eget metus eget lectus interdum imperdiet eget quis nibh.</p>
+              </div>
+              <div class="col-sm-4">
+                <img src="1432783051_70.png" width="80" height="80"/>
+               <h3>Send Requests</h3>
+                <p>Nullam venenatis laoreet nisi, quis lacinia turpis viverra sit amet. Quisque vel orci tristique, euismod mi a, euismod urna.</p>
+              </div>
+              <div class="col-sm-4">
+                <img src="1432783066_14.png" width="80" height="80"/>
+                <h3>Manage Away</h3>
+                <p>Etiam vel turpis libero. Donec et ipsum quis sem tempus laoreet et eget lorem. Sed ut dictum odio. Nam imperdiet tristique iaculis. Aliquam auctor vestibulum sapien eget lobortis. Sed id volutpat augue.</p>
+              </div>
+            </div>
+            <hr class="half-rule">
+          </div>
+        </div>
+        <div class="nav">
+          <div class="container">
+            <ul class="pull-left">
+            </ul>
+            <ul class="pull-right">
+              <li>Check us out on Github:</li>
+              <li><iframe src="https://ghbtns.com/github-btn.html?user=RowanFerrabee&type=follow" frameborder="0" scrolling="0" width="157px" height="20px"></iframe></li>
+              <li>|</li>
+              <li><iframe src="https://ghbtns.com/github-btn.html?user=michael-jonas&type=follow" frameborder="0" scrolling="0" width="145px" height="20px"></iframe></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div id="loggedin">
+        <div class="nav">
+          <div class="container">
+            <ul class="pull-left">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Us</a></li>
+            </ul>
+            <ul class="pull-right">
+              <li><a href="/">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
         <div id="user-profile">
         </div>
         <div id="oauth">
