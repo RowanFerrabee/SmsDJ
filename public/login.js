@@ -1,5 +1,5 @@
     window.onbeforeunload = logout;
-
+    alert('a');
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var userNumber = document.getElementById("number").value;

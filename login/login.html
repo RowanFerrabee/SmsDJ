@@ -4,7 +4,7 @@
     <title>SMS DJ</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="login.css">
-    <script src="login.js"></script>
+    <script type="text/javascript" src="login.js"></script>
   </head>
 
   <body>
@@ -79,7 +79,7 @@
         <div id="user-profile">
         </div>
         <div id="add-party">
-          <h5>Cell number: </h5></br><input type="text" name="number" id="number"/></br>
+          <b>Cell number: </b></br><input type="text" name="number" id="number"/></br>
           <button id="submit" onclick="loadData()">Add Party</button>
         </div>
         <div id="end-party">
@@ -132,10 +132,10 @@
         }
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
+            userProfilePlaceholder = document.getElementById('user-profile');/*
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
+            oauthPlaceholder = document.getElementById('oauth');*/
         var params = getHashParams();
         var access_token = params.access_token,
             refresh_token = params.refresh_token,
@@ -145,11 +145,11 @@
         } else {
           if (access_token) {
             // render oauth info
-            window.sessionStorage.setItem("access_token", access_token);
+            window.sessionStorage.setItem("access_token", access_token);/*
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
               refresh_token: refresh_token
-            });
+            });*/
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
@@ -168,7 +168,7 @@
               $('#login').show();
               $('#loggedin').hide();
               $('#oauth').hide();
-          }
+          }/*
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -182,7 +182,7 @@
                 refresh_token: refresh_token
               });
             });
-          }, false);
+          }, false);*/
         }
       })();
     </script>

@@ -4,7 +4,7 @@ body {
         background-color: #4B304A;
       } #login, #loggedin, #oauth {
         display: none;
-      } #loggedin h1 {
+      } #loggedin b {
         text-align: center;
       } #add-party, #end-party {
         text-align: center;
