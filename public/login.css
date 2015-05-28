@@ -4,7 +4,9 @@ body {
         background-color: #4B304A;
       } #login, #loggedin {
         display: none;
-      } .text-overflow {
+      } #user-profile {
+        color: #FDFDFD;
+      }.text-overflow {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

@@ -58,7 +58,6 @@
             <ul class="pull-right">
               <li>Check us out on Github:</li>
               <li><iframe src="https://ghbtns.com/github-btn.html?user=RowanFerrabee&type=follow" frameborder="0" scrolling="0" width="157px" height="20px"></iframe></li>
-              <li>|</li>
               <li><iframe src="https://ghbtns.com/github-btn.html?user=michael-jonas&type=follow" frameborder="0" scrolling="0" width="145px" height="20px"></iframe></li>
             </ul>
           </div>
@@ -78,16 +77,16 @@
         </div>
         <div id="user-profile">
         </div>
-        <div id="oauth">
-        </div>
         <div id="party">
         </div>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
+      <div id="oauth">
+      </div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
+      <h1>Welcome, {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
           <img class="media-object" width="150" src="{{images.0.url}}" />
@@ -96,11 +95,8 @@
           <dl class="dl-horizontal">
             <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
             <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
             <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
             <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
           </dl>
         </div>
       </div>
@@ -146,6 +142,7 @@
         } else {
           if (access_token) {
             // render oauth info
+            window.sessionStorage.setItem("access_token", access_token);
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
               refresh_token: refresh_token
@@ -159,12 +156,14 @@
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                   $('#login').hide();
                   $('#loggedin').show();
+                  $('oauth').hide();
                 }
             });
           } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
+              $('#oauth').hide();
           }
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
