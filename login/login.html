@@ -34,6 +34,7 @@
 
       document.getElementById("end-party").innerHTML = "";
       document.getElementById("add-party").style.display = "initial";
+      document.getElementById("add-party").style.textAlign = "center";
 
       xmlhttp.open("POST","/deleteParty");
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
