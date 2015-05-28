@@ -14,7 +14,7 @@
       xmlhttp.onreadystatechange = function () {
           var PartyID = xmlhttp.responseText;
           document.getElementById("number").value = "";
-          document.getElementById("party").style.display = "none";
+          document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
           var button = document.createElement("button");
           var text = document.createTextNode("End Party");
