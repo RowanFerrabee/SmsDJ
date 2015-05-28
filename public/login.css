@@ -4,11 +4,12 @@ body {
         background-color: #4B304A;
       } #login, #loggedin, #oauth {
         display: none;
-      } #loggedin b {
+      } #add-party b {
         text-align: center;
       } #add-party, #end-party {
         text-align: center;
         border-radius: 10px;
+        text-align: center;
       } #add-party h5 {
         color: #FDFDFD;
       } #user-profile {
@@ -62,5 +63,7 @@ body {
         vertical-align: center;
       } .bs-docs-featurette {
         color: #FDFDFD;
+        text-align: center;
+      } #user-profile h1 {
         text-align: center;
       }
