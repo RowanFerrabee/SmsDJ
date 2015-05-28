@@ -1,19 +1,23 @@
-body {
+      body {
         background-color: #C4AF86;
       } .page {
         background-color: #4B304A;
       } #login, #loggedin, #oauth {
         display: none;
       } #add-party b {
+        color: #FDFDFD;
         text-align: center;
       } #add-party, #end-party {
         text-align: center;
         border-radius: 10px;
         text-align: center;
-      } #add-party h5 {
-        color: #FDFDFD;
       } #user-profile {
         color: #FDFDFD;
+      } #user-profile h1 {
+        text-align: center;
+      } button#submit {
+        margin-top: 7px;
+        padding: 4px;
       }.text-overflow {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -29,15 +33,15 @@ body {
         background-position: center;
         padding-bottom: 0px;
         margin-bottom: 0px;
-      }.jumbotron .container {
+      } .jumbotron .container {
         top:11%;
         left:2%;
-      }.jumbotron h1 {
+      } .jumbotron h1 {
         color: #fff;
         font-size: 48px;
         font-family: 'Shift', sans-serif;
         font-weight: bold;
-      }.jumbotron p {
+      } .jumbotron p {
         font-size: 20px;
         color: #fff;
       } .nav {
@@ -63,7 +67,5 @@ body {
         vertical-align: center;
       } .bs-docs-featurette {
         color: #FDFDFD;
-        text-align: center;
-      } #user-profile h1 {
         text-align: center;
       }
