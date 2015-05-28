@@ -1,16 +1,15 @@
-window.onbeforeunload = logout;
+    window.onbeforeunload = logout;
+
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var userNumber = document.getElementById("number").value;
       window.sessionStorage.setItem("number", userNumber);
 
-      if (spotifyAuthentication(userName,userPassword)) {
-        xmlhttp.onreadystatechange = function () {
+      xmlhttp.onreadystatechange = function () {
           var PartyID = xmlhttp.responseText;
           document.getElementById("number").value = "";
           document.getElementById("party").style.display = "none";
-          document.getElementById("end-party").innerHTML = 
-            "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
+          document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
           var button = document.createElement("button");
           var text = document.createTextNode("End Party");
           button.appendChild(text);
@@ -22,6 +21,7 @@ window.onbeforeunload = logout;
         xmlhttp.send();
       }
     }
+
     function logout() {
       var params = "name="+window.sessionStorage.getItem("id")+
               "&number=+1"+window.sessionStorage.getItem("number");
@@ -34,8 +34,4 @@ window.onbeforeunload = logout;
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.onreadystatechange = function () {};
       xmlhttp.send(params);
-    }
-    function spotifyAuthentication(username, password) {
-      //TODO: this.
-      return true;
     }

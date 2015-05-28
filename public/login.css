@@ -6,6 +6,7 @@ body {
         display: none;
       } #add-party, #end-party {
         text-align: center;
+        color: #FDFDFD;
         border-radius: 10px;
       } #user-profile {
         color: #FDFDFD;
