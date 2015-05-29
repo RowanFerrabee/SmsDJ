@@ -15,7 +15,7 @@ var pg = require('pg');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var spotifyRequest = require('request');
-var twilio = require('twilio')('XXXXX', 'XXXXX');
+var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', 'bef62b8a2844a2c55711b2ca5ddcbe56');
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.post('/text', function (request,response) {
     if (regexArray) sentNumber = (body === regexArray[0]);
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("SELECT partyid FROM Parties WHERE usergrp LIKE '%' || "+from+" || '%'", function (dbErr, result) {
+        client.query("SELECT PartyID FROM users WHERE UserNumber = '"+from+"'", function (dbErr, result) {
             done();
             if(dbErr) {
                 console.error(dbErr);
@@ -62,8 +62,11 @@ app.post('/text', function (request,response) {
                     if (sentNumber) {
                         removeFromParty(from,PartyID);
                         addToParty(from,body);
-                   } else {
+                    } else {
                         //TODO: Add a song and reply on success
+                        //client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'"), fun
+                        //Get SongID by using API to search 'body' in spotify
+                        //Add SongID to PLayListID of spotifyID
                         console.log('Add song: ' + body);
                     }
                 } else {
@@ -88,12 +91,12 @@ app.post('/text', function (request,response) {
 
 function addToParty(user, PartyID) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = '"+user+","+"' || usergrp WHERE partyid = "+PartyID+" RETURNING partyid", function (dbErr, result) {
+        client.query("SELECT PartyID FROM Party WHERE PartyID = "+PartyID, function (dbErr, result) {
             done();
             console.log(result);
             if (dbErr) {
                 console.error(dbErr);
-            } else if (result.rowCount === 0) {    
+            } if (result.rowCount === 0) {
                 twilio.sendMessage({
                     to: user,
                     from: twilioNumber,
@@ -105,16 +108,23 @@ function addToParty(user, PartyID) {
                 });
                 console.log('Failed to add ',user,' to ',PartyID);
             } else {
-                twilio.sendMessage({
-                    to: user,
-                    from: twilioNumber,
-                    body: 'Successfully added to party with ID: '+PartyID
-                }, function (twilioErr, responseData) {
-                    if (twilioErr) {
-                        console.log(twilioErr);
+                client.query("INSERT INTO users values ("+PartyID+",'"+user+"')", function (err, rslt) {
+                    done();
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        twilio.sendMessage({
+                            to: user,
+                            from: twilioNumber,
+                            body: 'Successfully added to party with ID: '+PartyID
+                        }, function (twilioErr, responseData) {
+                           if (twilioErr) {
+                                console.log(twilioErr);
+                            }
+                        });
+                        console.log('Added ',user,' to ',PartyID);
                     }
                 });
-                console.log('Added ',user,' to ',PartyID);
             }
         });
     });
@@ -122,7 +132,7 @@ function addToParty(user, PartyID) {
 
 function removeFromParty(user,PartyID) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("UPDATE Parties SET usergrp = REPLACE(usergrp,'"+user+",','') WHERE partyid = "+PartyID, function (dbErr, result) {
+        client.query("DELETE FROM users WHERE UserNumber = '"+user+"'", function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);
@@ -143,11 +153,11 @@ function removeFromParty(user,PartyID) {
 
 app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
-    var number = '+1'+request.query.number.replace(/[^0-9]/gi, '');
     console.log("Received: "+name+", "+number);
     var PartyID = Math.floor((Math.random()*100000)+1); //TODO: Generate PartyIDs better.
+    var PlatListID = "45t4UxyZU9pU6lZCr9OiiZ";  //Use Spotify API to generate PlayListIDs
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("INSERT INTO Parties VALUES ('"+name+"','"+number+"',"+PartyID+",'');",function (dbErr, result) {
+        client.query("INSERT INTO Party VALUES ("+PartyID+",'"+name+"','"+PlayListID+"');",function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);                
@@ -170,7 +180,7 @@ app.get("/newAdmin", function (request, response) {
 
 app.post("/deleteParty", function (request, response) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("DELETE FROM Parties WHERE spotifyname = '"+request.body.name+"';",function (dbErr, result) {
+        client.query("DELETE FROM Party WHERE PartyID = "+request.body.partyid,function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);
@@ -186,6 +196,12 @@ app.post("/deleteParty", function (request, response) {
                 });
             }
         });
+        client.query("DELETE FROM users WHERE PartyID = '"+request.body.partyid+"'",function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+            }
+        });
     });
 });
 
@@ -196,7 +212,7 @@ app.get('/db', function (request, response) {
 
 app.get('/getData', function (request,response) {
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
-        client.query("SELECT * FROM Parties", function (dbErr, result) {
+        client.query("SELECT * FROM Party", function (dbErr, result) {
             done();
             if (dbErr) {
                 console.error(dbErr);

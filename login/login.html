@@ -8,15 +8,10 @@
     window.onbeforeunload = logout; //TODO close party only when party isOpen and person wants to close party, maybe an alert?
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
-      //var userNumber = document.getElementById("number").value;
-      //window.sessionStorage.setItem("number", userNumber);
-      
-      
-      
 
       xmlhttp.onreadystatechange = function () {
           var PartyID = xmlhttp.responseText;
-          //document.getElementById("number").value = "";
+          window.sessionStorage.setItem("PartyID", PartyID);
           document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
           var button = document.createElement("button");
@@ -33,26 +28,25 @@
           iframe.setAttribute("src",link);
           document.getElementById("end-party").appendChild(iframe);
         }
-
-        
     
         xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
         xmlhttp.send();
     }
 
     function logout() {
-      var params = "name="+window.sessionStorage.getItem("id")+
-              "&number=+1"+window.sessionStorage.getItem("number");
-      var xmlhttp = new XMLHttpRequest();
+      if (window.sessionStorage.getItem("id")) {
+        var params = "id="+window.sessionStorage.getItem("id")+"&partyid="+window.sessionStorage.getItem("PartyID");
+        var xmlhttp = new XMLHttpRequest();
 
-      document.getElementById("end-party").innerHTML = "";
-      document.getElementById("add-party").style.display = "initial";
-      document.getElementById("add-party").style.textAlign = "center";
+        document.getElementById("end-party").innerHTML = "";
+        document.getElementById("add-party").style.display = "initial";
+        document.getElementById("add-party").style.textAlign = "center";
 
-      xmlhttp.open("POST","/deleteParty");
-      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xmlhttp.onreadystatechange = function () {};
-      xmlhttp.send(params);
+        xmlhttp.open("POST","/deleteParty");
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {};
+        xmlhttp.send(params);
+      }
     }
     </script>
   </head>
