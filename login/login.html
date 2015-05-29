@@ -29,7 +29,10 @@
             iframe.height = "380px";
             //iframe.allowTransparency = true;
             iframe.setAttribute("src",link);
-            document.getElementById("end-party").appendChild(iframe);
+            var frameRefreshInterval = setInterval(240000,function(){
+              document.getElementById("end-party").appendChild(iframe) = document.getElementById("end-party").appendChild(iframe);
+            });
+            
           //}
         }
     
