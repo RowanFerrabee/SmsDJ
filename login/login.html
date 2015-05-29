@@ -8,8 +8,8 @@
     window.onbeforeunload = logout; //TODO close party only when party isOpen and person wants to close party, maybe an alert?
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
-      var userNumber = document.getElementById("number").value;
-      window.sessionStorage.setItem("number", userNumber);
+      //var userNumber = document.getElementById("number").value;
+      //window.sessionStorage.setItem("number", userNumber);
       
       var iframe = doucment.createElement('iframe');
       var html = '<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify%3Aplaylist%3A0XUlpafP8eIlIWt3VHSd7q" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
@@ -18,7 +18,7 @@
 
       xmlhttp.onreadystatechange = function () {
           var PartyID = xmlhttp.responseText;
-          document.getElementById("number").value = "";
+          //document.getElementById("number").value = "";
           document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
           var button = document.createElement("button");
