@@ -20,20 +20,20 @@
           button.onclick = logout;
           document.getElementById("end-party").appendChild(button);
           
-          //window.onload=function(){
-            var iframe = document.createElement('iframe');
-            //<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%3A45t4UxyZU9pU6lZCr9OiiZ" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-            var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%3A45t4UxyZU9pU6lZCr9OiiZ";
-            iframe.frameBorder = 0;
-            iframe.width = "300px";
-            iframe.height = "380px";
-            //iframe.allowTransparency = true;
-            iframe.setAttribute("src",link);
-            var frameRefreshInterval = setInterval(240000,function(){
-              document.getElementById("end-party").appendChild(iframe) = document.getElementById("end-party").appendChild(iframe);
-            });
-            
-          //}
+          //Spotify Play Button code
+          var iframe = document.createElement('iframe');
+          var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%3A45t4UxyZU9pU6lZCr9OiiZ";
+          iframe.frameBorder = 0;
+          iframe.width = "300px";
+          iframe.height = "380px";
+          iframe.setAttribute("src",link);
+          document.getElementById("end-party").appendChild(iframe);
+
+          setInterval(refreshIFrame, 240000);
+          function refreshIFrame(){
+            iframe.src = iframe.src;
+          }
+          
         }
     
         xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
