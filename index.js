@@ -200,9 +200,23 @@ app.get('/getData', function (request,response) {
                 response.send('Error: ' + dbErr);
             } else {
                 if (result) {
-                    var table = '';
+                    var table = '<h1>Party:</h1>';
                     for(var i=0; i<result.rowCount; i++)
-                        table += result.rows[i].spotifyname + ', ' + result.rows[i].adminnumber+ ', ' + result.rows[i].partyid+ ', ' + result.rows[i].usergrp + '</br>';
+                        table += result.rows[i].partyid + ', ' + result.rows[i].spotifyid+ ', ' + result.rows[i].playlistid+'</br>';
+                    response.send(table);
+                }
+            }
+        });
+        client.query("SELECT * FROM users", function (dbErr, result) {
+            done();
+            if (dbErr) {
+                console.error(dbErr);
+                response.send('Error: ' + dbErr);
+            } else {
+                if (result) {
+                    var table = '<h1>Users:</h1>';
+                    for(var i=0; i<result.rowCount; i++)
+                        table += result.rows[i].partyid + ', ' + result.rows[i].usernumber+'</br>';
                     response.send(table);
                 }
             }
