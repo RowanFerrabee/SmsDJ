@@ -20,13 +20,16 @@
           button.onclick = logout;
           document.getElementById("end-party").appendChild(button);
           
-          var iframe = document.createElement('iframe');
-          var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%0XUlpafP8eIlIWt3VHSd7q";
-          iframe.frameBorder = 0;
-          iframe.width = "300px";
-          iframe.height = "380px";
-          iframe.setAttribute("src",link);
-          document.getElementById("end-party").appendChild(iframe);
+          //window.onload=function(){
+            var iframe = document.createElement('iframe');
+            var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%45t4UxyZU9pU6lZCr9OiiZ";
+            iframe.frameBorder = 0;
+            iframe.width = "300px";
+            iframe.height = "380px";
+            //iframe.allowTransparency = true;
+            iframe.setAttribute("src",link);
+            document.getElementById("end-party").appendChild(iframe);
+          //}
         }
     
         xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
