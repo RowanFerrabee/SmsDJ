@@ -153,7 +153,7 @@ function removeFromParty(user,PartyID) {
 
 app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
-    console.log("Received: "+name+", "+number);
+    console.log("Received: "+name);
     var PartyID = Math.floor((Math.random()*100000)+1); //TODO: Generate PartyIDs better.
     var PlatListID = "45t4UxyZU9pU6lZCr9OiiZ";  //Use Spotify API to generate PlayListIDs
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
