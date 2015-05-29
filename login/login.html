@@ -24,12 +24,12 @@
           iframe.setAttribute("src",link);
           document.getElementById("end-party").appendChild(iframe);
 
-          document.getElementById("end-party").appendChild(document.createTextNode("<br>"));
           //End Party Button
           var button = document.createElement("button");
           var text = document.createTextNode("End Party");
           button.appendChild(text);
           button.onclick = logout;
+          button.style.display = "block";
           document.getElementById("end-party").appendChild(button);
 
           setInterval(refreshIFrame, 60000);
