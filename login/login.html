@@ -29,7 +29,7 @@
           iframe.setAttribute("src",link);
           document.getElementById("end-party").appendChild(iframe);
 
-          setInterval(refreshIFrame, 240000);
+          setInterval(refreshIFrame, 60000);
           function refreshIFrame(){
             iframe.src = iframe.src;
           }
