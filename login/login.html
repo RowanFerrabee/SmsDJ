@@ -10,6 +10,11 @@
       var xmlhttp = new XMLHttpRequest();
       var userNumber = document.getElementById("number").value;
       window.sessionStorage.setItem("number", userNumber);
+      
+      var iframe = doucment.createElement('iframe');
+      var html = '<iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Aspotify%3Aplaylist%3A0XUlpafP8eIlIWt3VHSd7q" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+      iframe.src = encodeURI(html);
+      
 
       xmlhttp.onreadystatechange = function () {
           var PartyID = xmlhttp.responseText;
@@ -23,7 +28,9 @@
           document.getElementById("end-party").appendChild(button);
         }
 
-        xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent(userNumber),true);
+        document.getElementById("end-party").appendChild(iframe);
+    
+        xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
         xmlhttp.send();
     }
 
