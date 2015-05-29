@@ -189,7 +189,6 @@ app.post("/deleteParty", function (request, response) {
 app.get('/db', function (request, response) {
     response.writeHead('200',{'Context-Type': 'text/html'});
     fs.createReadStream('./directory/directory.html').pipe(response);
-    response.end();
 });
 
 app.get('/getData', function (request,response) {
@@ -204,21 +203,20 @@ app.get('/getData', function (request,response) {
                     var table = '<h1>Party:</h1>';
                     for(var i=0; i<result.rowCount; i++)
                         table += result.rows[i].partyid + ', ' + result.rows[i].spotifyid+ ', ' + result.rows[i].playlistid+'</br>';
-                    response.send(table);
-                }
-            }
-        });
-        client.query("SELECT * FROM users", function (dbErr, result) {
-            done();
-            if (dbErr) {
-                console.error(dbErr);
-                response.send('Error: ' + dbErr);
-            } else {
-                if (result) {
-                    var table = '<h1>Users:</h1>';
-                    for(var i=0; i<result.rowCount; i++)
-                        table += result.rows[i].partyid + ', ' + result.rows[i].usernumber+'</br>';
-                    response.send(table);
+                    client.query("SELECT * FROM users", function (err, rslt) {
+                    done();
+                    if (err) {
+                        console.error(err);
+                        response.send('Error: ' + err);
+                    } else {
+                        if (rslt) {
+                            table += '<h1>Users:</h1>';
+                            for(var i=0; i<rslt.rowCount; i++)
+                                table += rslt.rows[i].partyid + ', ' + rslt.rows[i].usernumber+'</br>';
+                            response.send(table);
+                        }
+                    }
+                });
                 }
             }
         });
