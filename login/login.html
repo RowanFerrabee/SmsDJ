@@ -14,11 +14,6 @@
           window.sessionStorage.setItem("PartyID", PartyID);
           document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
-          var button = document.createElement("button");
-          var text = document.createTextNode("End Party");
-          button.appendChild(text);
-          button.onclick = logout;
-          document.getElementById("end-party").appendChild(button);
           
           //Spotify Play Button code
           var iframe = document.createElement('iframe');
@@ -28,6 +23,14 @@
           iframe.height = "380px";
           iframe.setAttribute("src",link);
           document.getElementById("end-party").appendChild(iframe);
+
+          document.getElementById("end-party").appendChild(document.createTextNode("<br>"));
+          //End Party Button
+          var button = document.createElement("button");
+          var text = document.createTextNode("End Party");
+          button.appendChild(text);
+          button.onclick = logout;
+          document.getElementById("end-party").appendChild(button);
 
           setInterval(refreshIFrame, 60000);
           function refreshIFrame(){
