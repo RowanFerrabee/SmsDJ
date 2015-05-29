@@ -163,15 +163,6 @@ app.get("/newAdmin", function (request, response) {
                 console.error(dbErr);                
                 response.send('Error: ' + dbErr);
             } else {
-                twilio.sendMessage({
-                    to: number,
-                    from: twilioNumber,
-                    body: 'You are now the admin of party with ID: '+PartyID
-                }, function (twilioErr, responseData) {
-                    if (twilioErr) {
-                        console.log(twilioErr);
-                    }
-                });
                 response.send(''+PartyID);  //TODO: Why does this work??
             }
         });
@@ -184,16 +175,6 @@ app.post("/deleteParty", function (request, response) {
             done();
             if (dbErr) {
                 console.error(dbErr);
-            } else {
-                twilio.sendMessage({
-                    to: request.body.number,
-                    from: twilioNumber,
-                    body: 'Your party is now closed'
-                }, function (twilioErr, responseData) {
-                    if (twilioErr) {
-                        console.log(twilioErr);
-                    }
-                });
             }
         });
         client.query("DELETE FROM users WHERE PartyID = '"+request.body.partyid+"'",function (dbErr, result) {
