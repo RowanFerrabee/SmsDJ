@@ -20,13 +20,13 @@
           button.onclick = logout;
           document.getElementById("end-party").appendChild(button);
           
-          var iframe = document.createElement('iframe');
+          /*var iframe = document.createElement('iframe');
           var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%0XUlpafP8eIlIWt3VHSd7q";
           iframe.frameBorder = 0;
           iframe.width = "300px";
           iframe.height = "380px";
           iframe.setAttribute("src",link);
-          document.getElementById("end-party").appendChild(iframe);
+          document.getElementById("end-party").appendChild(iframe);*/
         }
     
         xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
@@ -95,6 +95,7 @@
             </div>
             <hr class="half-rule">
           </div>
+          <iframe src="https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%3A45t4UxyZU9pU6lZCr9OiiZ" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
         </div>
         <div class="nav">
           <div class="container">
