@@ -22,6 +22,7 @@
           iframe.width = "300px";
           iframe.height = "380px";
           iframe.setAttribute("src",link);
+          iframe.style.display="block";
           document.getElementById("end-party").appendChild(iframe);
 
           //End Party Button
@@ -29,7 +30,6 @@
           var text = document.createTextNode("End Party");
           button.appendChild(text);
           button.onclick = logout;
-          button.style.display = "block";
           document.getElementById("end-party").appendChild(button);
 
           setInterval(refreshIFrame, 60000);
