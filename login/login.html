@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="login.css">
     <script type="text/javascript">
-    window.onbeforeunload = logout;
+    window.onbeforeunload = logout; //TODO close party only when party isOpen and person wants to close party, maybe an alert?
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var userNumber = document.getElementById("number").value;
@@ -73,17 +73,17 @@
               <div class="col-sm-4">
                 <img src="1432783005_7.png" width="80" height="80"/>
                 <h3>Join The Party</h3>
-                <p>In et velit quis metus gravida vestibulum. In pellentesque ipsum ut nulla dignissim, ut iaculis sem scelerisque. Maecenas vel augue nisi. Ut eget metus eget lectus interdum imperdiet eget quis nibh.</p>
+                <p>After you login with Spotify, simply create a party, get your PartyID, and share it with your guests.</p>
               </div>
               <div class="col-sm-4">
                 <img src="1432783051_70.png" width="80" height="80"/>
                <h3>Send Requests</h3>
-                <p>Nullam venenatis laoreet nisi, quis lacinia turpis viverra sit amet. Quisque vel orci tristique, euismod mi a, euismod urna.</p>
+                <p>Text SMS DJ with your PartyID to be added to the database and then start sending your DJ some song requests!</p>
               </div>
               <div class="col-sm-4">
                 <img src="1432783066_14.png" width="80" height="80"/>
-                <h3>Manage Away</h3>
-                <p>Etiam vel turpis libero. Donec et ipsum quis sem tempus laoreet et eget lorem. Sed ut dictum odio. Nam imperdiet tristique iaculis. Aliquam auctor vestibulum sapien eget lobortis. Sed id volutpat augue.</p>
+                <h3>Enjoy</h3>
+                <p>Let the beer flow, the vibes warm the room, and have a great time!</p>
               </div>
             </div>
             <hr class="half-rule">
@@ -116,8 +116,7 @@
         <div id="user-profile">
         </div>
         <div id="add-party">
-          <b>Cell Number: </b></br><input type="text" name="number" id="number"/></br>
-          <button id="submit" onclick="loadData()">Add Party</button>
+          <button id="submit" onclick="loadData()">Create Party</button>
         </div>
         <div id="end-party">
         </div>
