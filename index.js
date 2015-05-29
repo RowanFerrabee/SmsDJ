@@ -189,6 +189,7 @@ app.post("/deleteParty", function (request, response) {
 app.get('/db', function (request, response) {
     response.writeHead('200',{'Context-Type': 'text/html'});
     fs.createReadStream('./directory/directory.html').pipe(response);
+    response.end();
 });
 
 app.get('/getData', function (request,response) {
