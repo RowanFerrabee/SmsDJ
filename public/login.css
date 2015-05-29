@@ -55,7 +55,7 @@
         left:0px;
         width: 100%;
         vertical-align: center;
-        border-bottom: thick solid #0A0A0A;
+        border-bottom: thin solid #0A0A0A;
       } .nav .pull-left {
         padding-left: 0px;
       } .nav a {
