@@ -31,6 +31,7 @@
         left:0px;
         width:100%;
         background-image:url('http://imgur.com/30UUWA3.jpg');
+        background-attachment: fixed; 
         height: 600px;
         background-repeat: no-repeat;
         background-size: cover;
@@ -38,6 +39,7 @@
         padding-bottom: 0px;
         margin-bottom: 0px;
       } .jumbotron .container {
+        position: fixed;
         top:11%;
         left:2%;
       } .jumbotron h1 {
@@ -48,6 +50,8 @@
       } .jumbotron p {
         font-size: 20px;
         color: #fff;
+      } #header {
+        position: fixed;
       } .nav {
         z-index: 1;
         background-color: #4B304A;
