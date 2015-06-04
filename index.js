@@ -2,22 +2,26 @@
 var lauriersNumber = '+12892301213';
 var laurierResponse = 'Fuck off Laurier';
 var twilioNumber = '+16479315875';
-
-var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
-var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
-var redirect_uri = 'http://cryptic-cove-1713.herokuapp.com/callback'; 
 var stateKey = 'spotify_auth_state';
 
-var express = require('express');
-var bodyParser = require('body-parser');
 var fs = require('fs');
 var pg = require('pg');
+var express = require('express');
+var Promise = require('promise');
+var bodyParser = require('body-parser');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var spotifyRequest = require('request');
-var twilio = require('twilio')('xxxxxxxxxxxxxx', 'xxxxxxxxxxxx');
+var SpotifyWebApi =  require('spotify-web-api-node');
+var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', 'bef62b8a2844a2c55711b2ca5ddcbe56');
 
 var app = express();
+
+var spotifyApi = new SpotifyWebApi({
+    var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
+    var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
+    var redirect_uri = 'http://cryptic-cove-1713.herokuapp.com/callback'; 
+});
 
 var generateRandomString = function(length) {
   var text = '';
@@ -63,10 +67,14 @@ app.post('/text', function (request,response) {
                         removeFromParty(from,PartyID);
                         addToParty(from,body);
                     } else {
-                        //TODO: Add a song and reply on success
-                        //client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'"), fun
+                        //SPOTIFY CALL HERE:
                         //Get SongID by using API to search 'body' in spotify
-                        //Add SongID to PLayListID of spotifyID
+                        //if song found:
+                            //client.query("SELECT PlayListID FROM Party WHERE PartyID = '"+PartyID+"'"), fun
+                            //Add SongID to PLayListID of spotifyID
+                        //else:
+                            //text back: couldnt find song
+
                         console.log('Add song: ' + body);
                     }
                 } else {
@@ -116,7 +124,7 @@ function addToParty(user, PartyID) {
                         twilio.sendMessage({
                             to: user,
                             from: twilioNumber,
-                            body: 'Successfully added to party with ID: '+PartyID
+                            body: 'Successfully added to party with ID: '+PartyID+""
                         }, function (twilioErr, responseData) {
                            if (twilioErr) {
                                 console.log(twilioErr);
@@ -154,8 +162,13 @@ function removeFromParty(user,PartyID) {
 app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
     console.log("Received: "+name);
-    var PartyID = Math.floor((Math.random()*100000)+1); //TODO: Generate PartyIDs better.
-    var PlayListID = "45t4UxyZU9pU6lZCr9OiiZ";  //Use Spotify API to generate PlayListIDs
+    var PartyID = Math.floor((Math.random()*100000)+1);
+    var PlayListID = spotifyApi.createPlaylist(name, "SMS DJ Party").then(
+        function (data){
+            console.log(name+" added playlist with ID: "+data);
+            return data;
+        }
+    );
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("INSERT INTO Party VALUES ("+PartyID+",'"+name+"','"+PlayListID+"');",function (dbErr, result) {
             done();
