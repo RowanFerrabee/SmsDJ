@@ -50,11 +50,11 @@ app.get('/', function (request, response) {
 app.post('/text', function (request,response) {
     var re = /[0-9]+/g;
     var from = request.body.From;
-    var body = request.body.Body;
+    var textBody = request.body.Body;
     var regexArray = re.exec(body);
 
     var sentNumber = false;
-    if (regexArray) sentNumber = (body === regexArray[0]);
+    if (regexArray) sentNumber = (textBody === regexArray[0]);
 
     pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
         client.query("SELECT PartyID FROM users WHERE UserNumber = '"+from+"'", function (dbErr, result) {
@@ -70,9 +70,9 @@ app.post('/text', function (request,response) {
                 if (PartyID !== 0) {
                     if (sentNumber) {
                         removeFromParty(from,PartyID);
-                        addToParty(from,body);
+                        addToParty(from,textBody);
                     } else {
-                        spotifyApi.searchTracks(body, { limit : 1, offset : 2 }).then(function (searchData) {
+                        spotifyApi.searchTracks(textBody, { limit : 1, offset : 2 }).then(function (searchData) {
                            var trackURI = searchData.body.tracks.items[0].uri;
                            client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
                                 if (err) {
@@ -84,22 +84,48 @@ app.post('/text', function (request,response) {
                                         name = rslt.rows[0].spotifyid;
                                         spotifyApi.addTracksToPlaylist(name, PlayListID, [trackURI]).then(
                                             function (data) {
-                                                console.log('Add song: ' + body);
+                                                console.log('Add song: ' + textBody);
+                                                twilio.sendMessage({
+                                                    to: from,
+                                                    from: twilioNumber,
+                                                    body: "Successfully added song"
+                                                }, function (twilioErr, responseData) {
+                                                    if (twilioErr) {
+                                                       console.log(twilioErr);
+                                                    }
+                                               });
                                             }, function (spotifyErr) {
                                                 console.log('Failed to add to playlist!', spotifyErr);
+                                                twilio.sendMessage({
+                                                    to: from,
+                                                    from: twilioNumber,
+                                                    body: "Failed to add any songs that match: "+textBody
+                                                }, function (twilioErr, responseData) {
+                                                    if (twilioErr) {
+                                                       console.log(twilioErr);
+                                                    }
+                                               });
                                             });
                                     }
                                 }
                             });
                         }, function (searchErr) {
                             console.log('Failed to search for track!', spotifyErr);
-                            //text back: couldnt find song
+                            twilio.sendMessage({
+                                to: from,
+                                from: twilioNumber,
+                                body: "Couldn't find any songs that match: "+textBody
+                            }, function (twilioErr, responseData) {
+                                if (twilioErr) {
+                                   console.log(twilioErr);
+                                }
+                           });
                         });
                         
                     }
                 } else {
                     if (sentNumber) {
-                       addToParty(from,body);
+                       addToParty(from,textBody);
                     } else {
                         twilio.sendMessage({
                             to: from,
