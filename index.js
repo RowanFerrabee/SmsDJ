@@ -18,7 +18,7 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var spotifyRequest = require('request');
 var SpotifyWebApi =  require('spotify-web-api-node');
-var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', 'bef62b8a2844a2c55711b2ca5ddcbe56');
+var twilio = require('twilio')('xxxxxxxx', 'xxxxxxxx');
 
 var app = express();
 
