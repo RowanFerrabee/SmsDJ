@@ -141,6 +141,7 @@ app.post('/text', function (request,response) {
             }
         });
     });
+    response.end();
 });
 
 function addToParty(user, PartyID) {
