@@ -167,14 +167,7 @@ app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
     console.log("Received: "+name);
     var PartyID = Math.floor((Math.random()*100000)+1);
-spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : false })
-  .then(function(data) {
-    console.log('Created playlist!');
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-    /*
-    spotifyApi.createPlaylist(name, 'SMS DJ Party', { 'public' : false }).then(function (data){
+    spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : false }).then(function (data){
         var PlayListID = data.body.id;
         console.log(name+" added playlist with ID: "+PlayListID);
         pg.connect(process.env.DATABASE_URL, function (pgErr, client, done) {
@@ -188,7 +181,9 @@ spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : false })
                 }
             });
         });
-    });*/
+    }, function (err) {
+        console.log('Something went wrong!', err);
+    });
 });
 
 app.post("/deleteParty", function (request, response) {
