@@ -51,7 +51,7 @@ app.post('/text', function (request,response) {
     var re = /[0-9]+/g;
     var from = request.body.From;
     var textBody = request.body.Body;
-    var regexArray = re.exec(body);
+    var regexArray = re.exec(textBody);
 
     var sentNumber = false;
     if (regexArray) sentNumber = (textBody === regexArray[0]);
