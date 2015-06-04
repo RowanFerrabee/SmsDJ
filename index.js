@@ -86,13 +86,13 @@ app.post('/text', function (request,response) {
                                             function (data) {
                                                 console.log('Add song: ' + body);
                                             }, function (spotifyErr) {
-                                                console.log('Adding to playlist!', spotifyErr);
+                                                console.log('Failed to add to playlist!', spotifyErr);
                                             });
                                     }
-                            }
+                                }
                             });
                         }, function (searchErr) {
-                            console.log('Search for track!', spotifyErr);
+                            console.log('Failed to search for track!', spotifyErr);
                             //text back: couldnt find song
                         });
                         
@@ -198,7 +198,7 @@ app.get("/newAdmin", function (request, response) {
             });
         });
     }, function (err) {
-        console.log('Adding new admin!', err);
+        console.log('Failed to add new admin!', err);
     });
 });
 
