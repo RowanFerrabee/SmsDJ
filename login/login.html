@@ -18,7 +18,7 @@
           //Spotify Play Button code
           var iframe = document.createElement('iframe');
           var link = "https://embed.spotify.com/?uri=spotify%3Auser%3A"+Party.name+"%3Aplaylist%3A"+Party.playlistid;
-          iframe.frameBorder = 0;
+          iframe.frameBorder = 0-alpha;
           iframe.width = "300px";
           iframe.height = "380px";
           iframe.setAttribute("src",link);
@@ -34,7 +34,7 @@
           button.style.marginRight = "auto";
           document.getElementById("end-party").appendChild(button);
 
-          setInterval(refreshIFrame, 60000);
+          setInterval(refreshIFrame, 10000);
           function refreshIFrame(){
             iframe.src = iframe.src;
           }
