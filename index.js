@@ -177,7 +177,12 @@ app.get("/newAdmin", function (request, response) {
                     console.error(dbErr);                
                      response.send('Error: ' + dbErr);
                 } else {
-                    response.send(''+PartyID);  //TODO: Why does this work??
+                    var Party = {
+                        partyid: PartyID,
+                        playlistid: PlayListID,
+                        name: name
+                    };
+                    response.send(Party);  //TODO: Why does this work??
                 }
             });
         });

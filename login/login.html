@@ -10,14 +10,14 @@
       var xmlhttp = new XMLHttpRequest();
 
       xmlhttp.onreadystatechange = function () {
-          var PartyID = xmlhttp.responseText;
-          window.sessionStorage.setItem("PartyID", PartyID);
+          var Party = xmlhttp.responseText;
+          window.sessionStorage.setItem("PartyID", Party.partyid);
           document.getElementById("add-party").style.display = "none";
-          document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
+          document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+Party.partyid+"</h1>";
           
           //Spotify Play Button code
           var iframe = document.createElement('iframe');
-          var link = "https://embed.spotify.com/?uri=spotify%3Auser%3Amaj444%3Aplaylist%3A45t4UxyZU9pU6lZCr9OiiZ";
+          var link = "https://embed.spotify.com/?uri=spotify%3Auser%3A"+Party.name+"%3Aplaylist%3A"+Party.playlistid;
           iframe.frameBorder = 0;
           iframe.width = "300px";
           iframe.height = "380px";
