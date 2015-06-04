@@ -98,7 +98,7 @@ app.post('/text', function (request,response) {
                             }
                             });
                         }, function (searchErr) {
-
+                            console.log('Something went wrong!', spotifyErr);
                         });
                         
                     }
