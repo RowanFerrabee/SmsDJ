@@ -75,12 +75,27 @@ app.post('/text', function (request,response) {
                         //SPOTIFY CALL HERE:
                         //Get SongID by using API to search 'body' in spotify
                         //if song found:
-                            //client.query("SELECT PlayListID FROM Party WHERE PartyID = '"+PartyID+"'"), fun
+                            //, fun
                             //Add SongID to PLayListID of spotifyID
                         //else:
                             //text back: couldnt find song
-
-                        console.log('Add song: ' + body);
+                        client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
+                            if (err) {
+                                console.error(err);
+                            } else {
+                                var PlayListID, name;
+                                if (rslt.rowCount !== 0) {
+                                    PlayListID = rslt.rows[0].playlistid;
+                                    name = rslt.rows[0].spotifyid;
+                                    spotifyApi.addTracksToPlaylist(name, PlayListID, ["spotify:track:0WnUB48NWIl4R96uGuF2XQ"]).then(
+                                        function (data) {
+                                            console.log('Add song: ' + body);
+                                        }, function (spotifyErr) {
+                                            console.log('Something went wrong!', spotifyErr);
+                                        });
+                                }
+                            }
+                        });
                     }
                 } else {
                     if (sentNumber) {
