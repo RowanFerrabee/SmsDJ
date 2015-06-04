@@ -8,6 +8,11 @@ var fs = require('fs');
 var pg = require('pg');
 var express = require('express');
 var Promise = require('promise');
+
+var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
+var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
+var redirect_uri = 'http://cryptic-cove-1713.herokuapp.com/callback';
+
 var bodyParser = require('body-parser');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
