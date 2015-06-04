@@ -167,7 +167,7 @@ app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
     console.log("Received: "+name);
     var PartyID = Math.floor((Math.random()*100000)+1);
-spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : true })
+spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : false })
   .then(function(data) {
     console.log('Created playlist!');
   }, function(err) {
@@ -256,7 +256,7 @@ app.get('/login', function(req, res) {
     querystring.stringify({
       response_type: 'code',
       client_id: spotifyClientId,
-      scope: scope,
+      scope: encodeURIComponent(scope),
       redirect_uri: redirect_uri,
       state: state
     }));
