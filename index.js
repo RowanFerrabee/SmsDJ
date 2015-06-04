@@ -18,9 +18,9 @@ var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', 'bef62b8a28
 var app = express();
 
 var spotifyApi = new SpotifyWebApi({
-    var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
-    var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
-    var redirect_uri = 'http://cryptic-cove-1713.herokuapp.com/callback'; 
+    clientId : '2cdbe13432e34307b41ab01bf6497491',
+    clientSecret : 'c19745e36f4d4e63b6346d51b007ce5e',
+    redirectUri : 'http://cryptic-cove-1713.herokuapp.com/callback'
 });
 
 var generateRandomString = function(length) {
