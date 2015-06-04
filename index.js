@@ -177,7 +177,7 @@ app.get("/newAdmin", function (request, response) {
                     console.error(dbErr);                
                      response.send('Error: ' + dbErr);
                 } else {
-                    var Party = '{partyid:'+PartyID+',playlistid:"'+PlayListID+'",name:"'+name+'"}';
+                    var Party = '{"partyid":'+PartyID+',"playlistid":"'+PlayListID+'","name":"'+name+'"}';
                     response.send(Party);  //TODO: Why does this work??
                 }
             });
