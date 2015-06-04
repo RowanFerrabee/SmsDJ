@@ -75,7 +75,6 @@ app.post('/text', function (request,response) {
                         //SPOTIFY CALL HERE:
                         //Get SongID by using API to search 'body' in spotify
                         //if song found:
-                            //, fun
                             //Add SongID to PLayListID of spotifyID
                         //else:
                             //text back: couldnt find song
