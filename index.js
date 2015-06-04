@@ -72,12 +72,6 @@ app.post('/text', function (request,response) {
                         removeFromParty(from,PartyID);
                         addToParty(from,body);
                     } else {
-                        //SPOTIFY CALL HERE:
-                        //Get SongID by using API to search 'body' in spotify
-                        //if song found:
-                            //Add SongID to PLayListID of spotifyID
-                        //else:
-                            //text back: couldnt find song
                         spotifyApi.searchTracks(body, { limit : 1, offset : 2 }).then(function (searchData) {
                            var trackURI = searchData.body.tracks.items[0].uri;
                            client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
@@ -92,13 +86,14 @@ app.post('/text', function (request,response) {
                                             function (data) {
                                                 console.log('Add song: ' + body);
                                             }, function (spotifyErr) {
-                                                console.log('Something went wrong!', spotifyErr);
+                                                console.log('Adding to playlist!', spotifyErr);
                                             });
                                     }
                             }
                             });
                         }, function (searchErr) {
-                            console.log('Something went wrong!', spotifyErr);
+                            console.log('Search for track!', spotifyErr);
+                            //text back: couldnt find song
                         });
                         
                     }
@@ -203,7 +198,7 @@ app.get("/newAdmin", function (request, response) {
             });
         });
     }, function (err) {
-        console.log('Something went wrong!', err);
+        console.log('Adding new admin!', err);
     });
 });
 
