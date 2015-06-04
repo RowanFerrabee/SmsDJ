@@ -14,11 +14,6 @@
           window.sessionStorage.setItem("PartyID", PartyID);
           document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+PartyID+"</h1>";
-          var button = document.createElement("button");
-          var text = document.createTextNode("End Party");
-          button.appendChild(text);
-          button.onclick = logout;
-          document.getElementById("end-party").appendChild(button);
           
           //Spotify Play Button code
           var iframe = document.createElement('iframe');
@@ -29,7 +24,17 @@
           iframe.setAttribute("src",link);
           document.getElementById("end-party").appendChild(iframe);
 
-          setInterval(refreshIFrame, 240000);
+          //End Party Button
+          var button = document.createElement("button");
+          var text = document.createTextNode("End Party");
+          button.appendChild(text);
+          button.onclick = logout;
+          button.style.display = "block";
+          button.style.marginLeft = "auto";
+          button.style.marginRight = "auto";
+          document.getElementById("end-party").appendChild(button);
+
+          setInterval(refreshIFrame, 60000);
           function refreshIFrame(){
             iframe.src = iframe.src;
           }
@@ -61,7 +66,7 @@
   <body>
     <div class="page">
       <div id="login">
-        <div class="nav">
+        <div class="nav" id="header">
           <div class="container">
             <ul class="pull-left">
               <li><a href="/">Home</a></li>
@@ -81,7 +86,7 @@
         <div class="bs-docs-featurette">
           <div class="container">
             <h2 class="bs-docs-featurette-title">DJ-ing the party, together.</h2>
-            <p class="lead">SMS DJ allows your party's attendees to text song requests to a playist running on your computer, all controlled by you.</p>
+            <p class="lead">SMS DJ allows your party's attendees to text song requests to a playlist running on your computer, all controlled by you.</p>
             <hr class="half-rule">
            <div class="row">
               <div class="col-sm-4">
