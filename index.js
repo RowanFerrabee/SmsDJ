@@ -308,6 +308,9 @@ app.get('/callback', function(req, res) {
           console.log(body);
         });
 
+        spotifyApi.setAccessToken(access_token);
+        spotifyApi.setRefreshToken(refresh_token);
+
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
