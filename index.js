@@ -167,7 +167,7 @@ app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
     console.log("Received: "+name);
     var PartyID = Math.floor((Math.random()*100000)+1);
-spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : false })
+spotifyApi.createPlaylist(name, 'SMS DJ', { 'public' : true })
   .then(function(data) {
     console.log('Created playlist!');
   }, function(err) {
