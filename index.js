@@ -78,23 +78,29 @@ app.post('/text', function (request,response) {
                             //Add SongID to PLayListID of spotifyID
                         //else:
                             //text back: couldnt find song
-                        client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
-                            if (err) {
-                                console.error(err);
-                            } else {
-                                var PlayListID, name;
-                                if (rslt.rowCount !== 0) {
-                                    PlayListID = rslt.rows[0].playlistid;
-                                    name = rslt.rows[0].spotifyid;
-                                    spotifyApi.addTracksToPlaylist(name, PlayListID, ["spotify:track:0WnUB48NWIl4R96uGuF2XQ"]).then(
-                                        function (data) {
-                                            console.log('Add song: ' + body);
-                                        }, function (spotifyErr) {
-                                            console.log('Something went wrong!', spotifyErr);
-                                        });
-                                }
+                        spotifyApi.searchTracks(body, { limit : 1, offset : 2 }).then(function (searchData) {
+                           var trackURI = searchData.body.tracks.items[0].uri;
+                           client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
+                                if (err) {
+                                    console.error(err);
+                                } else {
+                                    var PlayListID, name;
+                                    if (rslt.rowCount !== 0) {
+                                        PlayListID = rslt.rows[0].playlistid;
+                                        name = rslt.rows[0].spotifyid;
+                                        spotifyApi.addTracksToPlaylist(name, PlayListID, [trackURI]).then(
+                                            function (data) {
+                                                console.log('Add song: ' + body);
+                                            }, function (spotifyErr) {
+                                                console.log('Something went wrong!', spotifyErr);
+                                            });
+                                    }
                             }
+                            });
+                        }, function (searchErr) {
+
                         });
+                        
                     }
                 } else {
                     if (sentNumber) {
