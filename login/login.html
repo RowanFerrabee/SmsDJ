@@ -10,7 +10,7 @@
       var xmlhttp = new XMLHttpRequest();
 
       xmlhttp.onreadystatechange = function () {
-          var Party = xmlhttp.responseText;
+          var Party = xmlhttp.responseText.parse();
           window.sessionStorage.setItem("PartyID", Party.partyid);
           document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+Party.partyid+"</h1>";

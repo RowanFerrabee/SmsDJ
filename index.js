@@ -182,7 +182,7 @@ app.get("/newAdmin", function (request, response) {
                         playlistid: PlayListID,
                         name: name
                     };
-                    response.send(Party);  //TODO: Why does this work??
+                    response.send(querystring.stringify(Party));  //TODO: Why does this work??
                 }
             });
         });
