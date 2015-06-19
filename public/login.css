@@ -7,7 +7,13 @@
       } #add-party b {
         color: #FDFDFD;
         text-align: center;
-      } #add-party, #end-party {
+      } #add-party p {
+        color: #FDFDFD;
+        text-align: center;
+      } #add-party input {
+        text-align: center;
+        display: block;
+      }#add-party, #end-party {
         text-align: center;
         border-radius: 10px;
         text-align: center;
