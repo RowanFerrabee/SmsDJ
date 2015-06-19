@@ -8,6 +8,7 @@
     window.onbeforeunload = logout; //TODO close party only when party isOpen and person wants to close party, maybe an alert?
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
+      var partyName = document.getElementById("partyname").value;
 
       xmlhttp.onreadystatechange = function () {
           var Party = JSON.parse(xmlhttp.responseText);
@@ -44,7 +45,7 @@
           
         }
     
-        xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&number="+encodeURIComponent('6137154438'),true);
+        xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&partyname="+encodeURIComponent(partyName),true);
         xmlhttp.send();
     }
 
@@ -139,6 +140,7 @@
         <div id="user-profile">
         </div>
         <div id="add-party">
+          <input type="text" id="partyname" name = "partyname">Party name goes here</input>
           <button id="submit" onclick="loadData()">Create Party</button>
         </div>
         <div id="end-party">
