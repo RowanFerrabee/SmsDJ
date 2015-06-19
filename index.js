@@ -137,7 +137,7 @@ app.post('/text', function (request,response) {
 app.get("/newAdmin", function (request, response) {
     var name = request.query.name.replace(/[()';]/gi, '');
     var partyName = request.query.partyName;
-    console.log("Received: "+name);
+    console.log("Received: "+name+partyName);
     var PartyID = Math.floor((Math.random()*100000)+1);
     spotifyApi.createPlaylist(name, partyName, { 'public' : false }).then(function (data){
         var PlayListID = data.body.id;
