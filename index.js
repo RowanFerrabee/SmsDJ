@@ -139,6 +139,13 @@ app.get("/newAdmin", function (request, response) {
     var partyName = request.query.partyname;
     console.log("Received: "+name+" - "+partyName);
     var PartyID = Math.floor((Math.random()*100000)+1);
+    spotifyApi.getUserPlaylists(name)
+        .then(function(data) {
+            console.log('Retrieved playlists', data.body);
+        },function(err) {
+            console.log('Something went wrong!', err);
+        }
+    );
     spotifyApi.createPlaylist(name, partyName, { 'public' : false }).then(function (data){
         var PlayListID = data.body.id;
         console.log(name+" added playlist with ID: "+PlayListID);
