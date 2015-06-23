@@ -61,8 +61,9 @@ app.post('/text', function (request,response) {
                         removeFromParty(from,PartyID);
                         addToParty(from,textBody);
                     } else {
-                        spotifyApi.searchTracks(textBody, { limit : 1, offset : 2 }).then(function (searchData) {
+                        spotifyApi.searchTracks(textBody, { limit : 5, offset : 2 }).then(function (searchData) {
                            var trackURI = searchData.body.tracks.items[0].uri;
+                           console.log("Songs: "+searchData);
                            client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
                                 if (err) {
                                     console.error(err);
