@@ -146,7 +146,6 @@
             </dl>
           </div>
           <div class="pull-right">
-            <img class="media-object" width="150"/>
           </div>
           </div>
         </div>
@@ -235,10 +234,15 @@
                   else
                     document.getElementById("display-name").innerHTML = response.id;
 
+                  var image = document.createElement("img");
+                  var imageParent = document.getElementById("pull-right");
+                  image.id = "media-object";
+
                   if(response.images.0.url)
-                    document.getElementById("media-object").src = response.images.0.url;
+                    image.src = response.images.0.url;
                   else
-                    document.getElementById("media-object").src = "http://imgur.com/ZCSeRzb.jpg";
+                    image.src = "http://imgur.com/ZCSeRzb.jpg";
+                  imageParent.appendChild(image);
 
                   //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                   $('#login').hide();
