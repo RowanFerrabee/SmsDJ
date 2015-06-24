@@ -28,6 +28,11 @@
           document.getElementById("end-party").appendChild(iframe);
           */
 
+          var explanation = document.createElement("h3");
+          explanation.id = "explanation";
+          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! <br><br> To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! <br><br>For best results be as specific as possible by including both the official title of the song and the artist's name<br>";
+          document.getElementById("end-party").appendChild(explanation);
+
           //End Party Button
           var button = document.createElement("button");
           var text = document.createTextNode("End Party");
@@ -36,12 +41,8 @@
           button.style.display = "block";
           button.style.marginLeft = "auto";
           button.style.marginRight = "auto";
+          button.style.marginBottom = "20px";
           document.getElementById("end-party").appendChild(button);
-
-          var explanation = document.createElement("h3");
-          explanation.id = "explanation";
-          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! For best results be as specific as possible by including both the official title of the song and the artist's name";
-          document.getElementById("end-party").appendChild(explanation);
 
           /*setInterval(refreshIFrame, 10000);
           function refreshIFrame(){
