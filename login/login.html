@@ -141,6 +141,7 @@
               <li><a href="/about">About Us</a></li>
             </ul>
             <ul class="pull-right">
+              <li><div id="image-holder"></li>
               <li><a href="/">Log Out</a></li>
             </ul>
           </div>
@@ -152,7 +153,6 @@
             <dl class="dl-horizontal">
             </dl>
           </div>
-          <div id="image-holder">
           </div>
           </div>
         </div>
@@ -244,8 +244,7 @@
                   var image = document.createElement("img");
                   var imageParent = document.getElementById("image-holder");
                   image.id = "user-image";
-                  image.class = "media-object"
-                  image.width = 150;
+                  image.class = "media-object";
 
                   if(response.images[0].url)
                     image.src = response.images[0].url;
