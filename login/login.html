@@ -142,10 +142,9 @@
           <div class="media">
           <div class="media-body">
             <dl class="dl-horizontal">
-              <dt>Display name</dt><dd class="clearfix"></dd>
             </dl>
           </div>
-          <div class="pull-right" id="image-holder">
+          <div id="image-holder">
           </div>
           </div>
         </div>
@@ -236,7 +235,9 @@
 
                   var image = document.createElement("img");
                   var imageParent = document.getElementById("image-holder");
-                  image.id = "media-object";
+                  image.id = "user-image";
+                  image.class = "media-object"
+                  image.width = 150;
 
                   if(response.images[0].url)
                     image.src = response.images[0].url;
