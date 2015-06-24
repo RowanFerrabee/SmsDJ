@@ -138,6 +138,18 @@
           </div>
         </div>
         <div id="user-profile">
+          <h1>Welcome, {{id}}</h1>
+          <div class="media">
+          <div class="media-body">
+            <dl class="dl-horizontal">
+              <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
+              <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+            </dl>
+          </div>
+          <div class="pull-right">
+            <img class="media-object" width="150" src="{{images.0.url}}" />
+          </div>
+          </div>
         </div>
         <div id="add-party">
           <p>Party name goes here:</p>
@@ -148,11 +160,11 @@
         </div>
         <!--<button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>-->
       </div>
-      <div id="oauth">
-      </div>
+      <!--<div id="oauth">
+      </div>-->
     </div>
 
-    <script id="user-profile-template" type="text/x-handlebars-template">
+    <!--<script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Welcome, {{id}}</h1>
       <div class="media">
         <div class="media-body">
@@ -165,17 +177,17 @@
           <img class="media-object" width="150" src="{{images.0.url}}" />
         </div>
       </div>
-    </script>
+    </script>-->
 
-    <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
-      </dl>
-    </script>
+   <!--<script id="oauth-template" type="text/x-handlebars-template">
+     <h2>oAuth info</h2>
+     <dl class="dl-horizontal">
+       <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
+       <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
+     </dl>
+   </script>-->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>-->
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
       (function() {
@@ -192,9 +204,9 @@
           }
           return hashParams;
         }
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+        /*var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');/*
+            userProfilePlaceholder = document.getElementById('user-profile');
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');*/
@@ -222,14 +234,14 @@
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                   $('#login').hide();
                   $('#loggedin').show();
-                  $('#oauth').hide();
+                  //$('#oauth').show();
                 }
             });
           } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
-              $('#oauth').hide();
+              //$('#oauth').hide();
           }/*
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
