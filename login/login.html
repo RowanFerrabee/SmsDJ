@@ -138,7 +138,7 @@
           </div>
         </div>
         <div id="user-profile">
-          <h1>Welcome, <div id="display-name"></div></h1>
+          <h1 id="display-name"></h1>
           <div class="media">
           <div class="media-body">
             <dl class="dl-horizontal">
@@ -229,9 +229,9 @@
                 success: function(response) {
                   window.sessionStorage.setItem("id", response.id);
                   if(response.display_name)
-                    document.getElementById("display-name").innerHTML = response.display_name;
+                    document.getElementById("display-name").innerHTML = "Welcome, "+response.display_name;
                   else
-                    document.getElementById("display-name").innerHTML = response.id;
+                    document.getElementById("display-name").innerHTML = "Welcome, "+response.id;
 
                   var image = document.createElement("img");
                   var imageParent = document.getElementById("image-holder");
