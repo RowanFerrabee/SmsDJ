@@ -145,7 +145,7 @@
               <dt>Display name</dt><dd class="clearfix"></dd>
             </dl>
           </div>
-          <div class="pull-right">
+          <div class="pull-right" id="image-holder">
           </div>
           </div>
         </div>
@@ -235,7 +235,7 @@
                     document.getElementById("display-name").innerHTML = response.id;
 
                   var image = document.createElement("img");
-                  var imageParent = document.getElementById("pull-right");
+                  var imageParent = document.getElementById("image-holder");
                   image.id = "media-object";
 
                   if(response.images[0].url)
