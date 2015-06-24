@@ -12,11 +12,12 @@
         text-align: center;
       } #add-party input {
         text-align: center;
-      }#add-party, #end-party {
-        text-align: center;
+      } #add-party, #end-party {
         border-radius: 10px;
         text-align: center;
       } #end-party h1 {
+        color: #FDFDFD;
+      } #end-party #explanation {
         color: #FDFDFD;
       } #end-party iframe {
         text-align: center;
