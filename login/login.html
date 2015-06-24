@@ -238,8 +238,8 @@
                   var imageParent = document.getElementById("pull-right");
                   image.id = "media-object";
 
-                  if(response.images.0.url)
-                    image.src = response.images.0.url;
+                  if(response.images[0].url)
+                    image.src = response.images[0].url;
                   else
                     image.src = "http://imgur.com/ZCSeRzb.jpg";
                   imageParent.appendChild(image);
