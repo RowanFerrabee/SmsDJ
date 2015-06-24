@@ -40,7 +40,7 @@
 
           var explanation = document.createElement("h3");
           explanation.id = "explanation";
-          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added!<br><br>To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests!<br>For best results be as specific as possible by including both the official title of the song and the artist's name";
+          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! For best results be as specific as possible by including both the official title of the song and the artist's name";
           document.getElementById("end-party").appendChild(explanation);
 
           /*setInterval(refreshIFrame, 10000);
@@ -245,7 +245,8 @@
                   var imageParent = document.getElementById("image-holder");
                   image.id = "user-image";
                   image.class = "media-object";
-                  image.width = 20;
+                  image.width = 30;
+                  image.borderRadius = 15;
 
                   if(response.images[0].url)
                     image.src = response.images[0].url;
