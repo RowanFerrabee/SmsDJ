@@ -22,6 +22,7 @@
         color: #FDFDFD;
       } #end-party #explanation {
         color: #FDFDFD;
+        margin-bottom: 10px;
       } #end-party iframe {
         text-align: center;
       } #user-profile {
@@ -81,6 +82,10 @@
         font-size: 11px;
         padding: 14px 10px;
         text-transform: uppercase;
+        display: inline;
+        vertical-align: center;
+      } .nav #image-holder {
+        padding: 14px 10px;
         display: inline;
         vertical-align: center;
       } .bs-docs-featurette {
