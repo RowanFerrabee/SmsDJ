@@ -138,16 +138,15 @@
           </div>
         </div>
         <div id="user-profile">
-          <h1>Welcome, {{id}}</h1>
+          <h1>Welcome, </h1>
           <div class="media">
           <div class="media-body">
             <dl class="dl-horizontal">
-              <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-              <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
+              <dt>Display name</dt><dd class="clearfix">/dd>
             </dl>
           </div>
           <div class="pull-right">
-            <img class="media-object" width="150" src="{{images.0.url}}" />
+            <img class="media-object" width="150" src="http://imgur.com/rgacqXM.jpg" />
           </div>
           </div>
         </div>
@@ -231,17 +230,17 @@
                 },
                 success: function(response) {
                   window.sessionStorage.setItem("id", response.id);
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  //userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                   $('#login').hide();
                   $('#loggedin').show();
-                  //$('#oauth').show();
+                  $('#oauth').show();
                 }
             });
           } else {
               // render initial screen
               $('#login').show();
               $('#loggedin').hide();
-              //$('#oauth').hide();
+              $('#oauth').hide();
           }/*
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
