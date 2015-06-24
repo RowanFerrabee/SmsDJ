@@ -38,6 +38,10 @@
           button.style.marginRight = "auto";
           document.getElementById("end-party").appendChild(button);
 
+          var explaination = document.createElement("h3");
+          explaination.innerHTML = "You can now (re)start your spotify player and your playlist should be added!<br>To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests!<br>For best results be as specific as possible by including both the official title of the song and the artist's name";
+          document.getElementById("end-party").appendChild(explaination);
+
           /*setInterval(refreshIFrame, 10000);
           function refreshIFrame(){
             iframe.src = iframe.src;
@@ -55,8 +59,11 @@
         var xmlhttp = new XMLHttpRequest();
 
         document.getElementById("end-party").innerHTML = "";
-        document.getElementById("add-party").style.display = "initial";
-        document.getElementById("add-party").style.textAlign = "center";
+        var addParty = document.getElementById("add-party");
+        addParty.style.display = "initial";
+        addParty.style.textAlign = "center";
+        addParty.style.marginLeft = "auto";
+        addParty.style.marginRight = "auto";
 
         xmlhttp.open("POST","/deleteParty");
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
