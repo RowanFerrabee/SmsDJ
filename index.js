@@ -63,7 +63,8 @@ app.post('/text', function (request,response) {
                     } else {
                         spotifyApi.searchTracks(textBody, { limit : 5, offset : 2 }).then(function (searchData) {
                            var trackURI = searchData.body.tracks.items[0].uri;
-                           console.log("Songs: "+searchData);
+                           console.log("Songs:\n");
+                           console.log(searchData);
                            client.query("SELECT * FROM Party WHERE PartyID = '"+PartyID+"'", function (err, rslt) {
                                 if (err) {
                                     console.error(err);
