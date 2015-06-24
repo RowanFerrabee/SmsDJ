@@ -4,6 +4,9 @@
         background-color: #4B304A;
       } #login, #loggedin, #oauth {
         display: none;
+      } #user-image {
+        width: 20;
+        border-radius: 10;
       } #add-party b {
         color: #FDFDFD;
         text-align: center;
