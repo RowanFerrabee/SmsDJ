@@ -19,7 +19,7 @@
 
           var explanation = document.createElement("p");
           explanation.id = "explanation";
-          explanation.textSize = "42px";
+          explanation.textSize = "56px";
           explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! <br> To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! <br>For best results be as specific as possible by including both the official title of the song and the artist's name<br>";
           document.getElementById("end-party").appendChild(explanation);
 
@@ -31,6 +31,7 @@
           button.style.display = "block";
           button.style.marginLeft = "auto";
           button.style.marginRight = "auto";
+          button.style.paddingBottom = "20px";
           button.style.marginBottom = "20px";
           document.getElementById("end-party").appendChild(button);
         }
