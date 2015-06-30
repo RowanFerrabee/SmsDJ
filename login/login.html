@@ -14,7 +14,7 @@
       xmlhttp.onreadystatechange = function () {
           var Party = JSON.parse(xmlhttp.responseText);
           window.sessionStorage.setItem("PartyID", Party.partyid);
-          $('add-party').hide();
+          $('#add-party').hide();
           //document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+Party.partyid+"</h1>";
           
@@ -63,7 +63,7 @@
         var xmlhttp = new XMLHttpRequest();
 
         document.getElementById("end-party").innerHTML = "";
-        $("add-party").show();
+        $('#add-party').show();
         /*var addParty = document.getElementById("add-party");
         addParty.style.display = "initial";
         addParty.style.textAlign = "center";
