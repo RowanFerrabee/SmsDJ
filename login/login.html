@@ -4,6 +4,7 @@
     <title>SMS DJ</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     <link rel="stylesheet" href="login.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript">
     window.onbeforeunload = logout; //TODO close party only when party isOpen and person wants to close party, maybe an alert?
     function loadData() {
@@ -13,7 +14,8 @@
       xmlhttp.onreadystatechange = function () {
           var Party = JSON.parse(xmlhttp.responseText);
           window.sessionStorage.setItem("PartyID", Party.partyid);
-          document.getElementById("add-party").style.display = "none";
+          $('add-party').hide();
+          //document.getElementById("add-party").style.display = "none";
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+Party.partyid+"</h1>";
           
 
@@ -61,11 +63,12 @@
         var xmlhttp = new XMLHttpRequest();
 
         document.getElementById("end-party").innerHTML = "";
-        var addParty = document.getElementById("add-party");
+        $("add-party").show();
+        /*var addParty = document.getElementById("add-party");
         addParty.style.display = "initial";
         addParty.style.textAlign = "center";
         addParty.style.marginLeft = "auto";
-        addParty.style.marginRight = "auto";
+        addParty.style.marginRight = "auto";*/
 
         xmlhttp.open("POST","/deleteParty");
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -194,7 +197,6 @@
    </script>-->
 
     <!--<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>-->
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
       (function() {
         function getHashParams() {
