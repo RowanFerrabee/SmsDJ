@@ -156,13 +156,13 @@
           </div>
           </div>
           </div>
-        </div>
         <div id="add-party">
           <p>Party name goes here:</p>
           <input type="text" id="partyname" name="partyname" value="SmsDJ"><br>
           <button id="submit" onclick="loadData()">Create Party</button>
         </div>
         <div id="end-party">
+        </div>
         </div>
         <!--<button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>-->
       </div>
@@ -197,10 +197,6 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
       (function() {
-        /**
-         * Obtains parameters from the hash of the URL
-         * @return Object
-         */
         function getHashParams() {
           var hashParams = {};
           var e, r = /([^&;=]+)=?([^&;]*)/g,
