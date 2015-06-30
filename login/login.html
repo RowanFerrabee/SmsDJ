@@ -32,8 +32,8 @@
 
           var explanation = document.createElement("p");
           explanation.id = "explanation";
-          explanation.textSize = "32px";
-          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! <br><br> To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! <br><br>For best results be as specific as possible by including both the official title of the song and the artist's name<br>";
+          explanation.textSize = "42px";
+          explanation.innerHTML = "You can now (re)start your spotify player and your playlist should be added! <br> To join the party, text your PartyID to (647) 931-5875, then go ahead and start sending your song requests! <br>For best results be as specific as possible by including both the official title of the song and the artist's name<br>";
           document.getElementById("end-party").appendChild(explanation);
 
           //End Party Button
@@ -164,6 +164,7 @@
           <p>Party name goes here:</p>
           <input type="text" id="partyname" name="partyname" value="SmsDJ"><br>
           <button id="submit" onclick="loadData()">Create Party</button>
+          <p><br></p>
         </div>
         <div id="end-party">
         </div>
