@@ -23,6 +23,12 @@
       } #end-party #explanation {
         color: #FDFDFD;
         margin-bottom: 10px;
+        font-size: 55px;
+      } #end-party #close-party-button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 40px;
       } #end-party iframe {
         text-align: center;
       } #user-profile {
@@ -49,7 +55,6 @@
         padding-bottom: 0px;
         margin-bottom: 0px;
       } .jumbotron .container {
-        position: fixed;
         top:11%;
         left:2%;
       } .jumbotron h1 {
