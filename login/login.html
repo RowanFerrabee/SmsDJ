@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="login.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript">
+    $('#end-party').hide();
     window.onbeforeunload = logout; //Logout when the window is closed
 
     function loadData() {
@@ -14,12 +15,11 @@
 
       xmlhttp.onreadystatechange = function () { 
           //On server response, display the PartyID, explanation, and End Party Button
-          $('#add-party').hide();
-          $('#end-party').show();
-          
           var Party = JSON.parse(xmlhttp.responseText);
           window.sessionStorage.setItem("PartyID", Party.partyid);
           document.getElementById("party-id").innerHTML = Party.partyid;
+          $('#add-party').hide();
+          $('#end-party').show();
         }
     
         //Send SpotifyID and Party Name to server to make new party
