@@ -6,17 +6,22 @@
     <link rel="stylesheet" href="login.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript">
-    window.onbeforeunload = logout;
+    window.onbeforeunload = logout; //Logout when the window is closed
+
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var partyName = document.getElementById("partyname").value;
 
-      xmlhttp.onreadystatechange = function () {
+      xmlhttp.onreadystatechange = function () { 
+          //On server response, display the PartyID, explanation, and End Party Button
+          $('#add-party').hide();
+
+          //PartyID
           var Party = JSON.parse(xmlhttp.responseText);
           window.sessionStorage.setItem("PartyID", Party.partyid);
-          $('#add-party').hide();
           document.getElementById("end-party").innerHTML = "<h1>Your PartyID is:<br>"+Party.partyid+"</h1>";
 
+          //Explanation
           var explanation = document.createElement("p");
           explanation.id = "explanation";
           explanation.textSize = "56px";
@@ -31,11 +36,11 @@
           button.style.display = "block";
           button.style.marginLeft = "auto";
           button.style.marginRight = "auto";
-          button.style.paddingBottom = "20px";
-          button.style.marginBottom = "20px";
+          button.style.marginBottom = "40px";
           document.getElementById("end-party").appendChild(button);
         }
     
+        //Send SpotifyID and Party Name to server to make new party
         xmlhttp.open("GET","/newAdmin?name="+encodeURIComponent(window.sessionStorage.getItem("id"))+"&partyname="+encodeURIComponent(partyName),true);
         xmlhttp.send();
     }
@@ -45,9 +50,11 @@
         var params = "id="+window.sessionStorage.getItem("id")+"&partyid="+window.sessionStorage.getItem("PartyID");
         var xmlhttp = new XMLHttpRequest();
 
+        //Remove Party started screen and render start party screen
         document.getElementById("end-party").innerHTML = "";
         $('#add-party').show();
 
+        //Remove party from server
         xmlhttp.open("POST","/deleteParty");
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {};
@@ -114,6 +121,7 @@
           </div>
         </div>
       </div>
+
       <div id="loggedin">
         <div class="nav">
           <div class="container">
@@ -143,6 +151,7 @@
           <p><br></p>
         </div>
         <div id="end-party">
+          
         </div>
         </div>
       </div>
