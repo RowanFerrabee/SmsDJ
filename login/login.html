@@ -116,20 +116,35 @@
             </ul>
           </div>
         </div>
-        <div id="user-profile">
-          <h1 id="display-name"></h1>
-          <div class="media">
-          <div class="media-body">
-            <dl class="dl-horizontal">
-            </dl>
-          </div>
-          </div>
-          </div>
         <div id="add-party">
-          <p>Party name goes here:</p>
-          <input type="text" id="partyname" name="partyname" value="SmsDJ"><br>
-          <button id="submit" onclick="loadData()">Create Party</button>
-          <p><br></p>
+          <div id="user-profile">
+            <h1 id="display-name"></h1>
+            <div class="media">
+              <div class="media-body">
+                <dl class="dl-horizontal">
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bs-docs-featurette">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="side-title">
+                      Let's Get<br>Started!
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="playlist-input">
+                    Name your playlist:
+                    <input type="text" id="partyname" name="partyname" value="SmsDJ"><br>
+                    <button id="submit" onclick="loadData()">Create Party</button>
+                    <p><br></p>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
         </div>
         <div id="end-party">
           <h1>Your PartyID is:<br>
