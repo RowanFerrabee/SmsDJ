@@ -114,6 +114,7 @@
       } .bs-docs-featurette {
         color: #FDFDFD;
         text-align: center;
+        border-top: solid thin #0A0A0A;
       } .side-title {
         font-size: 50px;
         font-weight: 100;
