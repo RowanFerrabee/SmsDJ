@@ -10,8 +10,6 @@
 
     window.onbeforeunload = logout; //Logout when the window is closed
 
-    document.getElementsByTagName('html')[0].style.height = window.innerHeight;
-
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var partyName = document.getElementById("partyname").value;
@@ -229,6 +227,9 @@
                   $('#loggedin').show();
                   $('#end-party').hide();
                   $('#oauth').show();
+
+                  document.getElementsByTagName('html')[0].style.height = window.innerHeight;
+                  document.getElementsByTagName('body')[0].style.height = window.innerHeight;
                 }
             });
           } else { 
