@@ -136,8 +136,8 @@
         text-align: left;
       }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+
+@media (min-width: 200px) {
     #end-party #explanation {
         text-align: center;
     } .side-title .container {
