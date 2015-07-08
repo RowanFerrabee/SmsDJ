@@ -16,9 +16,8 @@
         text-align: center;
       } #add-party input {
         text-align: center;
-      
         color: black;
-} #add-party, #end-party {
+      } #add-party, #end-party {
         border-radius: 10px;
         text-align: center;
       } #end-party h1 {
@@ -114,5 +113,6 @@
             background-color: #FDFDFD;
             color: black;
       } .playlist-input {
+            margin-top: 15px;
             font-weight: 200;
       }
