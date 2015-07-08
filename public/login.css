@@ -20,17 +20,29 @@
       } #add-party, #end-party {
         border-radius: 10px;
         text-align: center;
+      
+        margin-top: 20px;
+        margin-bottom: 20px;
       } #end-party h1 {
         color: #FDFDFD;
+      
+        margin-top: 30px;
       } #end-party #explanation {
         color: #FDFDFD;
-        margin-bottom: 10px;
-        font-size: 24px;
+        margin-bottom: 30px;
+        font-size: 17px;
+      
+        margin-top: 20px;
+        font-weight: 300;
       } #end-party #close-party-button {
         display: block;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 40px;
+      
+        width: 120px;
+        border-radius: 5px;
+        background-color: #FDFDFD;
       } #end-party iframe {
         text-align: center;
       } #user-profile {
