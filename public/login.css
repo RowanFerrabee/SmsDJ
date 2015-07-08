@@ -113,7 +113,6 @@
       } .side-title {
         font-size: 50px;
         font-weight: 100;
-        text-align: left;
       } .playlist-input button {
         border-radius: 15px;
         background-color: #FDFDFD;
@@ -127,6 +126,12 @@
       } .playlist-input {
         margin-top: 35px;
         font-weight: 200;
+        min-width: 300px;
       } #user-profile {
         font-weight: 200px;
+      } .side-title .container {
+        margin-right: auto;
+        margin-left: auto;
+        width: 200px;
+        text-align: left;
       }
