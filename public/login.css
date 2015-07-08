@@ -25,13 +25,12 @@
         margin-bottom: 20px;
       } #end-party h1 {
         color: #FDFDFD;
-      
+        font-weight: 200;
         margin-top: 30px;
       } #end-party #explanation {
         color: #FDFDFD;
         margin-bottom: 30px;
         font-size: 17px;
-      
         margin-top: 20px;
         font-weight: 300;
       } #end-party #close-party-button {
