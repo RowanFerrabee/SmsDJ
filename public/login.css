@@ -111,6 +111,9 @@
       } .nav #image-holder {
         display: inline;
         vertical-align: center;
+      } #footer { 
+        position: fixed;
+        bottom: 0;
       } .bs-docs-featurette {
         color: #FDFDFD;
         text-align: center;
