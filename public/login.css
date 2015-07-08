@@ -112,7 +112,6 @@
         display: inline;
         vertical-align: center;
       } #footer { 
-        position: fixed;
         bottom: 0;
       } .bs-docs-featurette {
         color: #FDFDFD;
@@ -177,6 +176,8 @@
     } #check-out {
         width: 210px;
         margin-bottom: 25px;
+    } #footer { 
+        height: 30px;
     }
 }
 
@@ -210,6 +211,8 @@
     } #check-out {
         width: auto;
         margin-bottom: 15px;
+    } #footer { 
+        height: 40px;
     }
 }
 
@@ -243,5 +246,7 @@
     } #check-out {
         width: auto;
         margin-bottom: 15px;
+    } #footer { 
+        height: 40px;
     }
 }
