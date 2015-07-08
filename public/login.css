@@ -109,6 +109,7 @@
       } .side-title {
         font-size: 50px;
         font-weight: 100;
+        text-align: left;
       } .playlist-input button {
         border-radius: 15px;
         background-color: #FDFDFD;
