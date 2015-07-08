@@ -142,6 +142,7 @@
         text-align: center;
     } .side-title .container {
         text-align: center;
+        width: auto;
     } .side-title {
         font-size: 25px;
     } #end-party h1 {
@@ -166,6 +167,7 @@
         text-align: center;
     } .side-title .container {
         text-align: center;
+        width: 220px;
     } .side-title {
         font-size: 50px;
     } #end-party h1 {
@@ -190,6 +192,7 @@
         text-align: right;
     } .side-title .container {
         text-align: left;
+        width: 220px;
     } .side-title {
         font-size: 50px;
     } #end-party h1 {
