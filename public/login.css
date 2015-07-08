@@ -152,6 +152,7 @@
     } .jumbotron {
         height: 320px;
         padding-left: 0px;
+        padding-right: 0px;
     } .jumbotron .container {
         top:18%;
         margin-top: 12px;
@@ -181,6 +182,7 @@
     } .jumbotron {
         height: 600px;
         padding-left: 30px;
+        padding-right: 30px;
     } .jumbotron .container {
         top:20%;
         margin-top: 25px;
@@ -210,6 +212,7 @@
     } .jumbotron {
         height: 600px;
         padding-left: 30px;
+        padding-right: 30px;
     } .jumbotron .container {
         top:20%;
         margin-top: 25px;
