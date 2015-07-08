@@ -165,6 +165,13 @@
         text-align: center;
     } .jumbotron {
         height: 600px;
+    } .jumbotron .container {
+        top:20%;
+        margin-top: 25px;
+    } .jumbotron h1 {
+        font-size: 48px;
+    } .jumbotron p {
+        font-size: 20px;
     }
 }
 
@@ -177,5 +184,12 @@
         text-align: left;
     } .jumbotron {
         height: 600px;
+    } .jumbotron .container {
+        top:20%;
+        margin-top: 25px;
+    } .jumbotron h1 {
+        font-size: 48px;
+    } .jumbotron p {
+        font-size: 20px;
     }
 }
