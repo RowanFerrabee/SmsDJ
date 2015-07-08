@@ -147,14 +147,13 @@
     } .jumbotron {
         height: 320px;
     } .jumbotron .container {
-        top:20%;
-        margin-top: 14px;
+        top:18%;
+        margin-top: 12px;
         text-align: center;
-        display: block;
     } .jumbotron h1 {
-        font-size: 26px;
+        font-size: 29px;
     } .jumbotron p {
-        font-size: 15px;
+        font-size: 17px;
     } .nav {
         padding-top: 2%;
     }
