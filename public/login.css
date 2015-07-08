@@ -1,4 +1,5 @@
       body {
+        -webkit-font-smoothing: antialiased;
         background-color: #4B304A;
       } .page {
         background-color: #4B304A;
