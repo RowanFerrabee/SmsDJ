@@ -137,14 +137,28 @@
         text-align: left;
       }
 
-@media (min-width: 200px) {
+@media (min-width: 300px) {
     #end-party #explanation {
         text-align: center;
     } .side-title .container {
         text-align: center;
     } #end-party h1 {
         text-align: center;
-    }
+    } .jumbotron {
+        height: 300px;
+      }
+}
+
+@media (min-width: 500px) {
+    #end-party #explanation {
+        text-align: center;
+    } .side-title .container {
+        text-align: center;
+    } #end-party h1 {
+        text-align: center;
+    } .jumbotron {
+        height: 600px;
+      }
 }
 
 @media (min-width: 775px) {
@@ -154,5 +168,7 @@
         text-align: left;
     } #end-party h1 {
         text-align: left;
-    }
+    } .jumbotron {
+        height: 600px;
+      }
 }
