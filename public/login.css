@@ -71,6 +71,7 @@
         margin-bottom: 0px;
       } .jumbotron .container {
         top:20%;
+        margin-top: 25px;
         left:2%;
       } .jumbotron h1 {
         color: #fff;
@@ -85,7 +86,7 @@
       } .nav {
         z-index: 1;
         background-color: #4B304A;
-        padding-top: 1%;
+        padding-top: 1.2%;
         padding-bottom: 1%;
         padding-left:0%;
         left:0px;
