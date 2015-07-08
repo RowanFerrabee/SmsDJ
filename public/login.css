@@ -135,3 +135,14 @@
         width: 220px;
         text-align: left;
       }
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #end-party #explanation {
+        text-align: center;
+    } .side-title .container {
+        text-align: center;
+    } #end-party h1 {
+        text-align: center;
+    }
+}
