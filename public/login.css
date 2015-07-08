@@ -23,8 +23,10 @@
         margin-bottom: 20px;
       } #end-party h1 {
         color: #FDFDFD;
-        font-weight: 200;
+        font-weight: 100;
         margin-top: 5px;
+        font-weight: 100;
+        text-align: left;
       } #end-party #explanation {
         color: #FDFDFD;
         margin-bottom: 30px;
