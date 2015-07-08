@@ -146,3 +146,25 @@
         text-align: center;
     }
 }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #end-party #explanation {
+        text-align: right;
+    } .side-title .container {
+        text-align: left;
+    } #end-party h1 {
+        text-align: left;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    #end-party #explanation {
+        text-align: right;
+    } .side-title .container {
+        text-align: left;
+    } #end-party h1 {
+        text-align: left;
+    }
+}
