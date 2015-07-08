@@ -150,6 +150,7 @@
         top:20%;
         margin-top: 14px;
         text-align: center;
+        display: block;
     } .jumbotron h1 {
         font-size: 26px;
     } .jumbotron p {
