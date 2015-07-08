@@ -33,6 +33,7 @@
         font-size: 17px;
         font-weight: 200;  
         margin-top: 15px;
+        text-align: right;
       } #end-party #close-party-button {
         display: block;
         margin-left: auto;
