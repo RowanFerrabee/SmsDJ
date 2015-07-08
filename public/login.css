@@ -151,11 +151,11 @@
         margin-top: 12px;
         text-align: center;
     } .jumbotron h1 {
-        font-size: 29px;
+        font-size: 32px;
     } .jumbotron p {
-        font-size: 17px;
+        font-size: 14px;
     } .nav {
-        padding-top: 2%;
+        padding-top: 2.5%;
     }
 }
 
