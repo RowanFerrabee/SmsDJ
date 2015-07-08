@@ -10,6 +10,8 @@
 
     window.onbeforeunload = logout; //Logout when the window is closed
 
+    document.getElementsByTagName('html')[0].style.height = window.innerHeight;
+
     function loadData() {
       var xmlhttp = new XMLHttpRequest();
       var partyName = document.getElementById("partyname").value;
