@@ -139,6 +139,7 @@
 
 @media (min-width: 300px) {
     #end-party #explanation {
+        margin-top: 25px;
         text-align: center;
     } .side-title .container {
         text-align: center;
@@ -147,6 +148,7 @@
         font-size: 0px;
     } #end-party h1 {
         text-align: center;
+        font-size: 40px;
     } .jumbotron {
         height: 320px;
     } .jumbotron .container {
@@ -165,6 +167,7 @@
 @media (min-width: 500px) {
     #end-party #explanation {
         text-align: center;
+        margin-top: 15px;
     } .side-title .container {
         text-align: center;
         width: 220px;
@@ -172,6 +175,7 @@
         font-size: 50px;
     } #end-party h1 {
         text-align: center;
+        font-size: 50px;
     } .jumbotron {
         height: 600px;
     } .jumbotron .container {
@@ -190,6 +194,7 @@
 @media (min-width: 775px) {
     #end-party #explanation {
         text-align: right;
+        margin-top: 15px;
     } .side-title .container {
         text-align: left;
         width: 220px;
@@ -197,6 +202,7 @@
         font-size: 50px;
     } #end-party h1 {
         text-align: left;
+        font-size: 50px;
     } .jumbotron {
         height: 600px;
     } .jumbotron .container {
