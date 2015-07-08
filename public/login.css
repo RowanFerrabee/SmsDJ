@@ -156,8 +156,6 @@
         font-size: 14px;
     } .nav {
         padding-top: 2.5%;
-    } .check-out {
-      display: none;
     }
 }
 
@@ -180,8 +178,6 @@
         font-size: 20px;
     } .nav {
         padding-top: 1.3%;
-    } .check-out {
-      display: inherit;
     }
 }
 
@@ -204,7 +200,5 @@
         font-size: 20px;
     } .nav {
         padding-top: 1.3%;
-    } .check-out {
-      display: inherit;
     }
 }
