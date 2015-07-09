@@ -1,11 +1,9 @@
 
-var lauriersNumber = '+12892301213';
-var laurierResponse = 'Fuck off Laurier';
 var twilioNumber = '+16479315875';
 var stateKey = 'spotify_auth_state';
 
-var spotifyClientId = '2cdbe13432e34307b41ab01bf6497491';
-var spotifyClientSecret = 'c19745e36f4d4e63b6346d51b007ce5e';
+var spotifyClientId = 'xxxxxxxxxx';
+var spotifyClientSecret = 'xxxxxxxxxx';
 var redirect_uri = 'http://sms-dj.herokuapp.com/callback';
 
 var fs = require('fs');
@@ -17,7 +15,7 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var spotifyRequest = require('request');
 var SpotifyWebApi =  require('spotify-web-api-node');
-var twilio = require('twilio')('AC80827003e02b768abd3a0eca9f3ed3f7', 'bef62b8a2844a2c55711b2ca5ddcbe56');
+var twilio = require('twilio')('xxxxxxxxxx', 'xxxxxxxxxx');
 
 var app = express();
 
